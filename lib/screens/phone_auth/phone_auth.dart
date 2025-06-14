@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FirstSplash extends StatelessWidget {
-  const FirstSplash({super.key});
+class PhoneAuth extends StatelessWidget {
+  const PhoneAuth({super.key});
 
   @override
   Widget build(BuildContext context) {

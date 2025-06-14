@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FirstSplash extends StatelessWidget {
-  const FirstSplash({super.key});
+class SecondSplash extends StatelessWidget {
+  const SecondSplash({super.key});
 
   @override
   Widget build(BuildContext context) {

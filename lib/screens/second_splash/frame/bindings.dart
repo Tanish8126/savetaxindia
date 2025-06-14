@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 
 import 'controller.dart';
 
-class LoadingLocationBindings implements Bindings {
+class SecondSplashBindings implements Bindings {
   @override
-  void dependencies() {}
+  void dependencies() {
+    Get.lazyPut(() => SecondSplashController());
+  }
 }

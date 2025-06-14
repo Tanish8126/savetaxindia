@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 
 import 'controller.dart';
 
-class LoadingLocationBindings implements Bindings {
+class OtpScreenBindings implements Bindings {
   @override
-  void dependencies() {}
+  void dependencies() {
+    Get.lazyPut(() => OtpScreenController());
+  }
 }

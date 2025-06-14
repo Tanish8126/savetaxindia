@@ -1,1 +1,1 @@
-class LoadingLocationState {}
+class SecondSplashState {}
