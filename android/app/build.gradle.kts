@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.savetaxindia"
+    namespace = "com.user.savetaxindia"
     compileSdk = 35
     ndkVersion = "27.0.12077973"
 
@@ -19,7 +19,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.savetaxindia"
+        applicationId = "com.user.savetaxindia"
         minSdk = 23
         targetSdk = 34
         versionCode = 1
