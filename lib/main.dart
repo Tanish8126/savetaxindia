@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:savetaxindia/screens/home/home.dart';
-import 'package:savetaxindia/utils/theme.dart';
 
+import 'global.dart';
+import 'screens/home/home.dart';
 import 'utils/routes.dart';
+import 'utils/theme.dart';
 
-void main() {
+Future<void> main() async {
+  await Global.init();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 }
 
@@ -14,12 +22,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Save Tax India",
-      theme: theme(),
-      initialRoute: HomeScreen.routeName,
-      routes: routes,
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: "Save Tax India",
+          theme: theme(),
+          initialRoute: HomeScreen.routeName,
+          routes: routes,
+        );
+      },
     );
   }
 }
