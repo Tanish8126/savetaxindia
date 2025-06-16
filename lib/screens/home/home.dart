@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:savetaxindia/icai/salaries/pension.dart';
 
 import '../../utils/constants/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   static String routeName = './home.dart';
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final TextEditingController _tweetController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +18,25 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           children: [
             Text("Save Tax India"),
-            TextFormField(initialValue: "Enter Value"),
-            FloatingActionButton(onPressed: () {}),
+            Expanded(
+              child: TextFormField(
+                controller: _tweetController,
+                textAlign: TextAlign.left,
+                keyboardType: TextInputType.number,
+                // maxLength: 250,
+                //maxLines: 10,
+                decoration: InputDecoration(
+                  hintText: "Enrw iijddi.....",
+                  hintStyle: tsCommon(16, kWhite),
+                ),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                caml(_tweetController.text, 60);
+              },
+            ),
+            Text(""),
           ],
         ),
       ),

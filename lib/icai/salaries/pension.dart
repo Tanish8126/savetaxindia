@@ -7,8 +7,10 @@
 
 //-------------- Other Employee -------------------//
 //receipt of gratuity  exempt u/s 10(10A)(ii)(a)
-dynamic caml(int pensionreceived, commutation) {
-  (1 / 3 * (pensionreceived / commutation)) * 100;
+dynamic caml(String pensionreceived, int commutation) {
+  dynamic value1 = (1 / 3 * (int.parse(pensionreceived) / commutation)) * 100;
+  return value1;
+  // print(value1);
 }
 
 //does not receive any gratuity exempt u/s 10(10A)(ii)(b)

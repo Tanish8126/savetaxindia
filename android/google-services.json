@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "181176913159",
+    "project_id": "savetaxindia-c2d33",
+    "storage_bucket": "savetaxindia-c2d33.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181176913159:android:ee298ed2de1a4bc88309a2",
+        "android_client_info": {
+          "package_name": "com.user.savetaxindia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANKmPXcsOXdyZCE-6JO2ufzXMvLEptM-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
