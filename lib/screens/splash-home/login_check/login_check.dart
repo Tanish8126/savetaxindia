@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/constants/constants.dart';
+import '../../../../utils/constants/constants.dart';
 //import '../../main_screen/main_screen.dart';
 //import '../splash_screen/splash_screen.dart';
 

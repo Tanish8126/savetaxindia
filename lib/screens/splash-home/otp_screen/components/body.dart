@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constants/constants.dart';
+import '../../../../../utils/constants/constants.dart';
 import 'opt_input.dart';
 
 class Body extends StatelessWidget {
@@ -15,10 +15,7 @@ class Body extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           sh02,
-          Text(
-            "Enter The OTP",
-            style: tsWW(24, FontWeight.bold),
-          ),
+          Text("Enter The OTP", style: tsPW(24, FontWeight.bold)),
           sh01,
           OtpInput(),
         ],

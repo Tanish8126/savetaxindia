@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../utils/constants/constants.dart';
-import '../../../../utils/default_button.dart';
+import '../../../../../../utils/constants/constants.dart';
+import '../../../../../utils/default_button.dart';
+import '../../phone_auth_screen/phone_auth_screen.dart';
 //import '../../phone_auth_screen/phone_auth_screen.dart';
 
 class Body extends StatelessWidget {
@@ -17,7 +18,7 @@ class Body extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(child: Image.asset("assets/images/lock.png")),
-          Text("SneakSpeak", style: tsWW(26, FontWeight.bold)),
+          Text("Save Tax India", style: tsWW(26, FontWeight.bold)),
           sh02,
           Text(
             "because we all know you can't resist it",
@@ -27,7 +28,7 @@ class Body extends StatelessWidget {
           DefaultButton(
             text: "Continue",
             press: () {
-              //     Get.toNamed(PhoneAuthScreen.routeName);
+              Get.toNamed(PhoneAuthScreen.routeName);
             },
             size: 18,
           ),

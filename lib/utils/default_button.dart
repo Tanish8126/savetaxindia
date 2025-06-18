@@ -21,11 +21,11 @@ class DefaultButton extends StatelessWidget {
       child: TextButton(
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          foregroundColor: kWhite,
-          backgroundColor: kButton,
+          foregroundColor: kBlack,
+          backgroundColor: kWhite,
         ),
         onPressed: press as void Function()?,
-        child: Text(text, style: tsW(size)),
+        child: Text(text, style: tsB(size)),
       ),
     );
   }

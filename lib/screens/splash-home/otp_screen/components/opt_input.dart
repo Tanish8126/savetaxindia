@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+import 'package:savetaxindia/screens/home/home.dart';
 
 //import '../../../../../controller/auth_controller.dart';
-import '../../../../../utils/constants/constants.dart';
-import '../../../../../utils/snackbar.dart';
-import '../../../../utils/default_button.dart';
+import '../../../../../../utils/constants/constants.dart';
+import '../../../../../../utils/snackbar.dart';
+import '../../../../../utils/default_button.dart';
 import 'resend_otp.dart';
 
 class OtpInput extends StatelessWidget {
@@ -18,7 +19,7 @@ class OtpInput extends StatelessWidget {
   final defaultPinTheme = PinTheme(
     width: getProportionateScreenHeight(20),
     height: getProportionateScreenWidth(60),
-    textStyle: tsPW(26, FontWeight.bold),
+    textStyle: tsWW(26, FontWeight.bold),
   );
 
   @override
@@ -32,7 +33,7 @@ class OtpInput extends StatelessWidget {
             children: [
               // Text(
               //   '(${authController.phoneNo})',
-              //   style: tsWW(18, FontWeight.w700),
+              //   style: tsPW(18, FontWeight.w700),
               // ),
               IconButton(
                 onPressed: () {
@@ -69,6 +70,7 @@ class OtpInput extends StatelessWidget {
               if (_formKey.currentState!.validate()) {
                 //  authController.otp.value = _pinPutController.text;
                 // authController.verifyOTP();
+                Get.offAllNamed(HomeScreen.routeName);
               } else {
                 showSnackBar(context, "Enter 6-Digit Otp");
               }

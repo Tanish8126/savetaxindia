@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:savetaxindia/icai/salaries/pension.dart';
+import 'package:get/get.dart';
 
+import '../../refund_option.dart';
+import '../../tax_summary.dart';
 import '../../utils/constants/constants.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -31,12 +32,19 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            FloatingActionButton(
+
+            TextButton(
               onPressed: () {
-                caml(_tweetController.text, 60);
+                Get.to(() => TaxSummaryScreen());
               },
+              child: Text("Tax Summary"),
             ),
-            Text(""),
+            TextButton(
+              onPressed: () {
+                Get.to(() => RefundOptionsScreen());
+              },
+              child: Text("Refund Options"),
+            ),
           ],
         ),
       ),

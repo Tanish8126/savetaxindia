@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../../../../utils/constants/constants.dart';
+import '../../../../../../utils/constants/constants.dart';
 //import '../../../../controller/auth_controller.dart';
 import '../../otp_screen/otp_screen.dart';
 
@@ -28,10 +28,10 @@ class _BodyState extends State<Body> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Spacer(),
-            Text("Enter your number", style: tsWW(24, FontWeight.bold)),
+            Text("Enter your number", style: tsPW(24, FontWeight.bold)),
             sh02,
             TextFormField(
-              style: tsPW(26, FontWeight.bold),
+              style: tsWW(26, FontWeight.bold),
               textAlign: TextAlign.center,
               controller: _controller,
               inputFormatters: [LengthLimitingTextInputFormatter(10)],
@@ -69,8 +69,8 @@ class _BodyState extends State<Body> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  foregroundColor: kWhite,
-                  backgroundColor: kButton,
+
+                  backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -79,7 +79,7 @@ class _BodyState extends State<Body> {
                     Get.toNamed(OtpScreen.routeName);
                   }
                 },
-                child: Text("Continue", style: tsW(18)),
+                child: Text("Continue", style: tsB(18)),
               ),
             ),
           ],

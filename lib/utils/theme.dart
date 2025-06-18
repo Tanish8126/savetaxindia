@@ -4,7 +4,7 @@ import '../utils/constants/constants.dart';
 
 ThemeData theme() {
   return ThemeData(
-    scaffoldBackgroundColor: const Color.fromARGB(255, 0, 229, 255),
+    scaffoldBackgroundColor: kPrimary,
     fontFamily: "Roboto",
     appBarTheme: appBarTheme(),
     textTheme: textTheme(),
