@@ -11,22 +11,16 @@
 // (iv) Maximum = 25,00,000
 // whichever is lower
 
-dynamic cal1(int leavecredit, int avgsalary) {
-  int value1 = leavecredit * avgsalary;
-  return value1;
-}
+int calculateLeaveSalaryExemption({
+  required int leaveCredit,
+  required int avgSalaryPerMonth,
+  required int actualAmountReceived,
+}) {
+  int amount1 = leaveCredit * avgSalaryPerMonth;
+  int amount2 = 10 * avgSalaryPerMonth;
+  int amount3 = actualAmountReceived;
+  int amount4 = 2500000; // Maximum limit
 
-dynamic cal2(int avgsalary) {
-  int value2 = 10 * avgsalary;
-  return value2;
-}
-
-dynamic cal3(int actsalary) {
-  int value3 = actsalary;
-  return value3;
-}
-
-dynamic cal4() {
-  int value4 = 2500000;
-  return value4;
+  // Return the minimum of the four amounts
+  return [amount1, amount2, amount3, amount4].reduce((a, b) => a < b ? a : b);
 }

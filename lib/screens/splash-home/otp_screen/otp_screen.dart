@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-//import '../../../../controller/auth_controller.dart';
+import '../../../../controller/auth_controller.dart';
+import '../../../utils/constants/constants.dart';
 import 'components/body.dart';
 
 class OtpScreen extends StatelessWidget {
   static String routeName = "/otpscreen";
-  // final authController = Get.put(AuthController());
+  final authController = Get.put(AuthController());
 
-  const OtpScreen({super.key});
+  OtpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(child: Scaffold(body: Body()));
+    return Scaffold(
+      //Change the background color to kPrimary
+      backgroundColor: kPrimary,
+      body: Body(),
+    );
   }
 }

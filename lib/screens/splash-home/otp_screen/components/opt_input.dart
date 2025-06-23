@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
-import 'package:savetaxindia/screens/home/home.dart';
 
-//import '../../../../../controller/auth_controller.dart';
+import '../../../../../controller/auth_controller.dart';
 import '../../../../../../utils/constants/constants.dart';
 import '../../../../../../utils/snackbar.dart';
 import '../../../../../utils/default_button.dart';
@@ -12,8 +11,14 @@ import 'resend_otp.dart';
 
 class OtpInput extends StatelessWidget {
   OtpInput({super.key});
+
+  //==================Form Key==================
   final _formKey = GlobalKey<FormState>();
-  //final authController = Get.put(AuthController());
+
+  //==================Auth Controller==================
+  final authController = Get.put(AuthController());
+
+  //==================Text Editing Controller==================
   final TextEditingController _pinPutController = TextEditingController();
 
   final defaultPinTheme = PinTheme(
@@ -31,10 +36,10 @@ class OtpInput extends StatelessWidget {
         children: [
           Row(
             children: [
-              // Text(
-              //   '(${authController.phoneNo})',
-              //   style: tsPW(18, FontWeight.w700),
-              // ),
+              Text(
+                '(${authController.phoneNo})',
+                style: tsPW(18, FontWeight.w700),
+              ),
               IconButton(
                 onPressed: () {
                   Get.back();
@@ -45,6 +50,7 @@ class OtpInput extends StatelessWidget {
           ),
           sh02,
           Pinput(
+            //==================Hint Text==================
             preFilledWidget: Text(
               "3",
               style: tsCommonW(26, FontWeight.bold, kButton),
@@ -56,11 +62,14 @@ class OtpInput extends StatelessWidget {
             controller: _pinPutController,
             pinContentAlignment: Alignment.center,
             pinAnimationType: PinAnimationType.fade,
+            //==================Validator==================
             validator: (value) {
               vPhoneValidator.hasMatch(value!) ? null : fPhoneNumber;
               return null;
             },
           ),
+
+          //==================Resend OTP==================
           ResendOtp(),
           sh05,
           DefaultButton(
@@ -68,9 +77,8 @@ class OtpInput extends StatelessWidget {
             size: 18,
             press: () {
               if (_formKey.currentState!.validate()) {
-                //  authController.otp.value = _pinPutController.text;
-                // authController.verifyOTP();
-                Get.offAllNamed(HomeScreen.routeName);
+                authController.otp.value = _pinPutController.text;
+                authController.verifyOTP();
               } else {
                 showSnackBar(context, "Enter 6-Digit Otp");
               }

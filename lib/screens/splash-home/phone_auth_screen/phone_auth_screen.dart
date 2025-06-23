@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/constants/constants.dart';
 import 'components/body.dart';
 
 class PhoneAuthScreen extends StatelessWidget {
@@ -8,6 +9,10 @@ class PhoneAuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(child: Scaffold(body: Body()));
+    return Scaffold(
+      //Change the background color to kPrimary
+      backgroundColor: kPrimary,
+      body: Body(),
+    );
   }
 }

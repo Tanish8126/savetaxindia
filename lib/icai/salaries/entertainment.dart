@@ -1,17 +1,31 @@
-// fully taxable for all employees but deduction is allowed to government employees u/s 16
+class EntertainmentAllowance {
+  // fully taxable for all employees but deduction is allowed to government employees u/s 16
 
-import 'package:flutter/material.dart';
+  // Entertainment allowance received is fully taxable and is first to be included in the
+  // salary and thereafter the following deduction is to be made from gross salary.
+  // However, deduction in respect of entertainment allowance is available in case of
+  // Government employees only. The amount of deduction will be lower of:
+  // (i) One-fifth of his basic salary or
+  // (ii)  Rs. 5,000 or
+  // (iii) Entertainment allowance received.
+  // Amount actually spent by the employee towards entertainment out of the
+  // entertainment allowance received by him is not a relevant consideration at all.
 
-import '../employment_type.dart';
+  int entertainmentAllowanceDeduction({
+    required int basicSalary,
+    required int entertainmentAllowanceReceived,
+  }) {
+    int oneFifthOfBasic = (basicSalary / 5).round();
+    int maxDeduction = 5000;
 
-dynamic ent(int amt, String status, dynamic salaried) {
-  employment(salaried);
-  if (status == employment(salaried)) {
-    Text("Only 5000 is allowed");
-  } else {
-    if (amt > 5000) {
-    } else {
-      20 % amt;
-    }
+    // The deduction is the least of:
+    // (i) One-fifth of basic salary
+    // (ii) Rs. 5,000
+    // (iii) Entertainment allowance received
+    return [
+      oneFifthOfBasic,
+      maxDeduction,
+      entertainmentAllowanceReceived,
+    ].reduce((a, b) => a < b ? a : b);
   }
 }

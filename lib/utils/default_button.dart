@@ -7,10 +7,10 @@ class DefaultButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.size,
-    this.press,
+    required this.press,
   });
   final String text;
-  final Function? press;
+  final Function press;
   final double size;
 
   @override

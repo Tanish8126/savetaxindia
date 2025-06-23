@@ -14,8 +14,13 @@ class Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          //==================Spacer==================
           sh02,
+
+          //==================Enter The OTP Text==================
           Text("Enter The OTP", style: tsPW(24, FontWeight.bold)),
+
+          //==================Space==================
           sh01,
           OtpInput(),
         ],

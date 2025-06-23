@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/constants.dart';
-//import '../../main_screen/main_screen.dart';
-//import '../splash_screen/splash_screen.dart';
+import '../../home/bottom_nav/bottom_nav.dart';
+import '../splash_screen/splash_screen.dart';
 
 class LoginCheck extends StatelessWidget {
   const LoginCheck({super.key});
@@ -11,7 +11,10 @@ class LoginCheck extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //==================Screen Size Initialization==================
     SizeConfig().init(context);
+
+    //==================Stream Builder=============== ===
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
@@ -19,11 +22,11 @@ class LoginCheck extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (snapshot.hasData) {
-          return Text("data");
-          // return const MainScreen();
+          //==================Main Screen==================
+          return MainScreen();
         } else {
-          return Text("data");
-          // return SplashScreen();
+          //==================Splash Screen==================
+          return const SplashScreen();
         }
       },
     );

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../utils/constants/constants.dart';
-//import '../../../../controller/auth_controller.dart';
+import '../../../../controller/auth_controller.dart';
 import '../../otp_screen/otp_screen.dart';
 
 class Body extends StatefulWidget {
@@ -14,8 +14,13 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  //==================Form Key==================
   final _formKey = GlobalKey<FormState>();
-  // final _authController = Get.put(AuthController());
+
+  //==================Auth Controller==================
+  final _authController = Get.put(AuthController());
+
+  //==================Text Editing Controller==================
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -27,27 +32,36 @@ class _BodyState extends State<Body> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //==================Spacer==================
             const Spacer(),
+
+            //==================Enter your number Text==================
             Text("Enter your number", style: tsPW(24, FontWeight.bold)),
             sh02,
+
+            //==========Mobile Number Input Field======
             TextFormField(
               style: tsWW(26, FontWeight.bold),
               textAlign: TextAlign.center,
               controller: _controller,
+              //===============Max Length is 10===============
               inputFormatters: [LengthLimitingTextInputFormatter(10)],
               keyboardType: TextInputType.number,
+              //===============Validator==================
               validator: (number) =>
                   vPhoneValidator.hasMatch(number!) ? null : fPhoneNumber,
               onChanged: (val) {
-                // _authController.phoneNo.value = val;
+                _authController.phoneNo.value = val;
               },
-              //  onSaved: (val) => _authController.phoneNo.value = val!,
+              onSaved: (val) => _authController.phoneNo.value = val!,
+              //===============Decoration==================
               decoration: InputDecoration(
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 focusedErrorBorder: InputBorder.none,
                 fillColor: kBlack,
+                //===============Indian Flag==================
                 prefixIcon: SizedBox(
                   width: getProportionateScreenWidth(70),
                   child: Container(
@@ -56,6 +70,7 @@ class _BodyState extends State<Body> {
                     child: Text('IND', style: tsWW(18, FontWeight.bold)),
                   ),
                 ),
+                //===============Hint Text==================
                 hintText: "3333-333-333",
                 hintStyle: tsCommonW(26, FontWeight.bold, kButton),
               ),
@@ -74,8 +89,8 @@ class _BodyState extends State<Body> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // _formKey.currentState!.save();
-                    //   _authController.getOtp(context);
+                    _formKey.currentState!.save();
+                    _authController.getOtp(context);
                     Get.toNamed(OtpScreen.routeName);
                   }
                 },
