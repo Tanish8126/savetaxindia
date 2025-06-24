@@ -1,83 +1,37 @@
 import 'package:get/get.dart';
 
-import '../../tax_input/tax_input.dart';
+import '../../discussion_screen.dart';
+import '../../expat_dashboard.dart';
+import '../../final_tax_dashboard/final_tax_dashboard.dart';
+import '../../tax_summary.dart';
 
 List<Map<String, dynamic>> categories = [
   {
     "image": "assets/images/goops.png",
-    "text": "Best Seller",
+    "text": "File ITR",
     "onpress": () {
-      Get.toNamed(TaxInput.routeName);
+      Get.toNamed(TaxSummaryScreen.routeName);
     },
   },
   {
     "image": "assets/images/goops.png",
-    "text": "Chai",
+    "text": "Discussion",
     "onpress": () {
-      Get.toNamed(TaxInput.routeName);
+      Get.toNamed(DiscussionScreen.routeName);
     },
   },
   {
     "image": "assets/images/goops.png",
-    "text": "Coffee",
+    "text": "Resources",
     "onpress": () {
-      Get.toNamed(TaxInput.routeName);
+      Get.toNamed(ExpatFileDashboard.routeName);
     },
   },
   {
     "image": "assets/images/goops.png",
-    "text": "Bun",
+    "text": "Expert",
     "onpress": () {
-      Get.toNamed(TaxInput.routeName);
-    },
-  },
-  {
-    "image": "assets/images/goops.png",
-    "text": "Iced Tea",
-    "onpress": () {
-      Get.toNamed(TaxInput.routeName);
-    },
-  },
-  {
-    "image": "assets/images/goops.png",
-    "text": "Milk Shakes",
-    "onpress": () {
-      Get.toNamed(TaxInput.routeName);
-    },
-  },
-  {
-    "image": "assets/images/goops.png",
-    "text": "Cup Cake",
-    "onpress": () {
-      Get.toNamed(TaxInput.routeName);
-    },
-  },
-  {
-    "image": "assets/images/goops.png",
-    "text": "Puff",
-    "onpress": () {
-      Get.toNamed(TaxInput.routeName);
-    },
-  },
-  {
-    "image": "assets/images/goops.png",
-    "text": "Donut",
-    "onpress": () {
-      Get.toNamed(TaxInput.routeName);
-    },
-  },
-  {
-    "image": "assets/images/goops.png",
-    "text": "Namkeen",
-    "onpress": () {
-      Get.toNamed(TaxInput.routeName);
-    },
-  },
-  {
-    "image": "assets/images/goops.png",
-    "text": "Cookies",
-    "onpress": () {
-      Get.toNamed(TaxInput.routeName);
+      Get.toNamed(TaxDashboardScreen.routeName);
     },
   },
 ];

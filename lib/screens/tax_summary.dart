@@ -1,8 +1,28 @@
 import 'package:flutter/material.dart';
 
-class TaxSummaryScreen extends StatelessWidget {
+class TaxSummaryScreen extends StatefulWidget {
   static String routeName = './tax_summary.dart';
   const TaxSummaryScreen({super.key});
+
+  @override
+  State<TaxSummaryScreen> createState() => _TaxSummaryScreenState();
+}
+
+class _TaxSummaryScreenState extends State<TaxSummaryScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +47,25 @@ class TaxSummaryScreen extends StatelessWidget {
                     icon: Icons.arrow_back_ios_new_rounded,
                     onTap: () {},
                   ),
-                  const Text(
-                    "6 of 7",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                  ),
-                  _circleButton(icon: Icons.close, onTap: () {}),
+                  // const Text(
+                  //   "6 of 7",
+                  //   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  // ),
+                  // _circleButton(icon: Icons.close, onTap: () {}),
+                ],
+              ),
+            ),
+            // TabBar for regimes
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: TabBar(
+                controller: _tabController,
+                labelColor: primaryGreen,
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: primaryGreen,
+                tabs: const [
+                  Tab(text: 'New Tax Regime'),
+                  Tab(text: 'Old Tax Regime'),
                 ],
               ),
             ),
@@ -56,81 +90,98 @@ class TaxSummaryScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            // Cards
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
+            // TabBarView for regime-specific content
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
                 children: [
-                  _infoCard(
-                    title: "Wages & Income",
-                    amount: "72.144",
-                    onEdit: () {},
-                    onAdd: () {},
-                  ),
-                  const SizedBox(height: 16),
-                  _infoCard(
-                    title: "Credits & Deductions",
-                    amount: "12.323",
-                    onEdit: () {},
-                    onAdd: () {},
-                  ),
+                  _regimeSummaryContent(primaryGreen), // New Tax Regime
+                  _regimeSummaryContent(primaryGreen), // Old Tax Regime
                 ],
-              ),
-            ),
-            const SizedBox(height: 32),
-            // Refund
-            Text(
-              "Current Refund",
-              style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "\$ 3.850",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 36,
-                color: primaryGreen,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Text(
-                "If you have no other income or deductions to add, answer a few more questions and you'll be all set!",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
-              ),
-            ),
-            const Spacer(),
-            // Next button
-            Padding(
-              padding: const EdgeInsets.only(bottom: 32),
-              child: GestureDetector(
-                onTap: () {},
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: primaryGreen,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: primaryGreen.withAlpha((255 * 0.2).toInt()),
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  padding: const EdgeInsets.all(18),
-                  child: const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                    size: 28,
-                  ),
-                ),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _regimeSummaryContent(Color primaryGreen) {
+    return Column(
+      children: [
+        // Cards
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              _infoCard(
+                title: "Wages & Income",
+                amount: "72.144",
+                onEdit: () {},
+                onAdd: () {},
+              ),
+              const SizedBox(height: 16),
+              _infoCard(
+                title: "Credits & Deductions",
+                amount: "12.323",
+                onEdit: () {},
+                onAdd: () {},
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 32),
+        // Refund
+        Text(
+          "Current Refund",
+          style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          "\$ 3.850",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 36,
+            color: primaryGreen,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Text(
+            "If you have no other income or deductions to add, answer a few more questions and you'll be all set!",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
+          ),
+        ),
+        const Spacer(),
+        // Next button
+        Padding(
+          padding: const EdgeInsets.only(bottom: 32),
+          child: GestureDetector(
+            onTap: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                color: primaryGreen,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: primaryGreen.withAlpha((255 * 0.2).toInt()),
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(18),
+              child: const Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+                size: 28,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

@@ -7,7 +7,7 @@ class ShareTweet extends StatelessWidget {
   final String tweet;
 
   void shareText() {
-    Share.share(tweet);
+    SharePlus.instance.share(ShareParams(text: tweet));
   }
 
   @override

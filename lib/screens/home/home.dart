@@ -10,22 +10,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Save Tax India"),
-        centerTitle: false,
-        actions: <Widget>[
-          GestureDetector(
-            onTap: () {},
-            child: Icon(
-              Icons.search,
-              color: kWhite,
-              size: SizeConfig.screenHeight * 0.04,
-            ),
-          ),
-        ],
-      ),
-      body: const Body(),
-    );
+    return SafeArea(child: Scaffold(body: const Body()));
   }
 }

@@ -61,31 +61,35 @@ class PostDataMethods {
 
   //Add Like To Tweet
   void addLikeToTweet(FeedModel tweet, String userId) async {
-    // FirebaseFirestore.instance
-    //     .collection('tweet')
-    //     .doc(tweet.key!)
-    //     .collection('likeList')
-    //     .doc()
-    //     .set(tweet.likeCount);
+    FirebaseFirestore.instance
+        .collection('tweet')
+        .doc(tweet.key!)
+        .collection('likeList')
+        .doc(userId)
+        .set({'userId': userId, 'likedAt': DateTime.now()});
   }
 
   //Add Bookmark to Tweet
   void addBookmark(FeedModel tweet, String userId) async {
-    // FirebaseFirestore.instance
-    //     .collection('tweet')
-    //     .doc(tweet.key!)
-    //     .collection('likeList')
-    //     .doc()
-    //     .set(tweet.likeCount);
+    FirebaseFirestore.instance
+        .collection('tweet')
+        .doc(tweet.key!)
+        .collection('bookmarks')
+        .doc(userId)
+        .set({'userId': userId, 'bookmarkedAt': DateTime.now()});
   }
 
   //Add Comment to Tweet
   void commentToTweet(FeedModel tweet, String userId) async {
-    // FirebaseFirestore.instance
-    //     .collection('tweet')
-    //     .doc(tweet.key!)
-    //     .collection('likeList')
-    //     .doc()
-    //     .set(tweet.likeCount);
+    FirebaseFirestore.instance
+        .collection('tweet')
+        .doc(tweet.key!)
+        .collection('comments')
+        .doc()
+        .set({
+          'userId': userId,
+          'comment': '', // You may want to pass the comment text as a parameter
+          'createdAt': DateTime.now(),
+        });
   }
 }

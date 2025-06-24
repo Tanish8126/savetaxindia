@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:savetaxindia/screens/discussion_screen.dart';
+import 'package:savetaxindia/screens/subscription%20screen/subscription_screen.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../../profile_screen/profile_screen.dart';
@@ -18,9 +20,9 @@ class _MainScreenState extends State<MainScreen> {
   int _page = 0;
   var userData = {};
   List<Widget> pages = const [
-    ProfileScreen(),
     HomeScreen(),
-    HomeScreen(),
+    DiscussionScreen(),
+    SubscriptionScreen(),
     ProfileScreen(),
   ];
 

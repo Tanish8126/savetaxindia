@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_null_aware_operators
-
 import 'user_model.dart';
 
 class FeedModel {
@@ -36,7 +34,7 @@ class FeedModel {
       "createdAt": createdAt,
       "imagePath": imagePath,
       "likeList": likeList,
-      "user": user == null ? null : user!.toJson(),
+      "user": user?.toJson(),
       "parentkey": parentkey,
     };
   }
@@ -50,7 +48,7 @@ class FeedModel {
       "createdAt": createdAt,
       "imagePath": imagePath,
       "likeList": likeList,
-      "user": user == null ? null : user!.toJson(),
+      "user": user?.toJson(),
       "parentkey": parentkey,
     };
   }
@@ -80,7 +78,6 @@ class FeedModel {
         });
         likeCount = likeList!.length;
       }
-
       /// In old database tweet db schema likeList is saved in the form of map
       /// like list map is removed from latest code but to support old schema below code is required
       /// Once all user migrated to new version like list map support will be removed
