@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/constants/constants.dart';
 import 'components/body.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -9,6 +8,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: kPrimary, body: Body());
+    return Scaffold(body: Body());
   }
 }

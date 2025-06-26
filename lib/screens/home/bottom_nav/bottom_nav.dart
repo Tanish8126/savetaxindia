@@ -20,10 +20,10 @@ class _MainScreenState extends State<MainScreen> {
   int _page = 0;
   var userData = {};
   List<Widget> pages = const [
+    ProfileScreen(),
     HomeScreen(),
     DiscussionScreen(),
     SubscriptionScreen(),
-    ProfileScreen(),
   ];
 
   void onPageChange(int page) {

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../utils/constants/constants.dart';
 import '../../../../widgets/shimmer.dart';
-import 'components/categories_input.dart';
+import 'components/list_categories.dart';
 import 'components/category_card.dart';
 import 'frame/index.dart';
 
@@ -13,6 +13,7 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(CategoriesController());
+    final ScrollController scrollController = ScrollController();
 
     return Padding(
       padding: pds(0.02, 0),
@@ -30,7 +31,7 @@ class Categories extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          sh01,
           Container(
             decoration: BoxDecoration(
               color: Colors.green.shade50,
@@ -41,13 +42,14 @@ class Categories extends StatelessWidget {
               builder: (value) {
                 if (!value.isLoading) {
                   return SingleChildScrollView(
+                    controller: scrollController,
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
                     child: Row(
                       children: List.generate(
                         controller.categoriesData.length,
                         (index) => CategoryCard(
-                          image: categories[index]["image"],
+                          icon: categories[index]["icon"],
                           text: categories[index]["text"],
                           // text: controller.categoriesData[index].title,
                           press: categories[index]["onpress"],
@@ -61,11 +63,11 @@ class Categories extends StatelessWidget {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ShimmerEffect(height: 0.07, width: 0.15),
-                        ShimmerEffect(height: 0.07, width: 0.15),
-                        ShimmerEffect(height: 0.07, width: 0.15),
-                        ShimmerEffect(height: 0.07, width: 0.15),
-                        ShimmerEffect(height: 0.07, width: 0.15),
+                        ShimmerEffect(height: 0.15, width: 0.25),
+                        ShimmerEffect(height: 0.15, width: 0.25),
+                        ShimmerEffect(height: 0.15, width: 0.25),
+                        ShimmerEffect(height: 0.15, width: 0.25),
+                        ShimmerEffect(height: 0.15, width: 0.25),
                       ],
                     ),
                   );

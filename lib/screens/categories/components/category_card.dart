@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/constants/constants.dart';
+
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
     super.key,
-    required this.image,
+    required this.icon,
     required this.text,
     required this.press,
   });
 
-  final String image, text;
+  final IconData icon;
+  final String text;
   final GestureTapCallback press;
 
   @override
@@ -16,15 +19,17 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: AnimatedContainer(
+        height: SizeConfig.screenHeight * 0.15,
+        width: SizeConfig.screenWidth * 0.25,
         duration: const Duration(milliseconds: 150),
         curve: Curves.easeInOut,
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: kWhite,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
+              color: kBlack.withValues(alpha: 0.1),
               blurRadius: 8,
               offset: Offset(0, 4),
             ),
@@ -44,27 +49,17 @@ class CategoryCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.contain,
-                  width: 30,
-                  height: 30,
-                  errorBuilder: (context, error, stackTrace) => Icon(
-                    Icons.category,
-                    size: 32,
-                    color: Colors.green.shade200,
-                  ),
-                ),
+                child: Icon(icon, size: 32, color: Colors.green.shade900),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              padding: pda(0.01),
               child: Text(
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 15,
+                  fontSize: 14,
                   color: Colors.green.shade900,
                 ),
               ),

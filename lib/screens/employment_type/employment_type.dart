@@ -18,7 +18,7 @@ class EmploymentType extends StatelessWidget {
           width: SizeConfig.screenWidth * 0.90,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: const Color.fromARGB(255, 142, 170, 255),
+            color: Colors.green.shade700,
           ),
           child: Padding(
             padding: pdo(0, 0, 0, 0),

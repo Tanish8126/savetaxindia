@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/constants/constants.dart';
 
 class Tweet extends StatelessWidget {
-  const Tweet({
-    super.key,
-    required this.tweet,
-  });
+  const Tweet({super.key, required this.tweet});
 
   final String tweet;
 

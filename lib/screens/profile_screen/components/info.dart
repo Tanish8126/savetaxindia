@@ -1,5 +1,4 @@
-// ignore_for_file: deprecated_member_use
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,7 +9,9 @@ import 'editprofile_screen.dart';
 import 'followers_screen.dart';
 
 class Info extends StatelessWidget {
-  const Info({super.key});
+  Info({super.key});
+
+  final _user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,9 @@ class Info extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: OutlinedButton(
-              style: const ButtonStyle(),
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.transparent),
+              ),
               onPressed: () {
                 Get.toNamed(EditProfileScreen.routeName);
               },
@@ -31,19 +34,24 @@ class Info extends StatelessWidget {
             ),
           ),
           //==================User Name==================
-          Text("Rahul Gupta", style: tsBW(18, FontWeight.w700)),
+          Text(
+            _user?.displayName != null ? "Tanish" : "User",
+            style: tsBW(18, FontWeight.w700),
+          ),
 
           //==================User Bio==================
-          sh02,
+          sh01,
           Text(
-            "Anonymity grants me the power to delve into genuine conversations",
+            _user?.displayName != null
+                ? "Anonymity grants me the power to deliver into genuine conversations"
+                : "Anonymity grants me the power to delve into genuine conversations",
             style: tsCommonW(
               13,
               FontWeight.w400,
               const Color.fromARGB(255, 0, 0, 0),
             ),
           ),
-          sh02,
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -53,14 +61,17 @@ class Info extends StatelessWidget {
                 icon: SvgPicture.asset(
                   "assets/icons/gps.svg",
                   height: 20.h,
-                  color: const Color(0xFFD9FFBB),
+                  colorFilter: const ColorFilter.mode(
+                    Color.fromARGB(255, 46, 90, 1),
+                    BlendMode.srcIn,
+                  ),
                 ),
                 label: Text(
-                  "Nmims",
+                  "Salaried",
                   style: tsCommonW(
                     15,
                     FontWeight.w700,
-                    const Color(0xFFD9FFBB),
+                    const Color.fromARGB(255, 46, 90, 1),
                   ),
                 ),
               ),
@@ -69,7 +80,10 @@ class Info extends StatelessWidget {
                   SvgPicture.asset(
                     "assets/icons/flash.svg",
                     height: 20.h,
-                    color: const Color(0xFFFFA3A3),
+                    colorFilter: const ColorFilter.mode(
+                      Color(0xFFFFA3A3),
+                      BlendMode.srcIn,
+                    ),
                   ),
                   Text(
                     "999",
@@ -87,7 +101,10 @@ class Info extends StatelessWidget {
                 icon: SvgPicture.asset(
                   "assets/icons/people.svg",
                   height: 20.h,
-                  color: const Color(0xFF7059FF),
+                  colorFilter: const ColorFilter.mode(
+                    Color(0xFF7059FF),
+                    BlendMode.srcIn,
+                  ),
                 ),
                 label: Text(
                   "999",
@@ -101,7 +118,7 @@ class Info extends StatelessWidget {
               sw05,
             ],
           ),
-          sh02,
+
           Row(
             children: [
               //==================Followers==================
@@ -149,38 +166,34 @@ class Info extends StatelessWidget {
               ),
             ],
           ),
+          ?_user != null
+              ? null
+              : SizedBox(
+                  width: double.infinity,
+                  height: 40.h,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      side: WidgetStateProperty.all(
+                        BorderSide(
+                          color: kBlack.withValues(alpha: 0.5),
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      "Unfollow",
+                      style: tsCommonW(15, FontWeight.w700, kBlack),
+                    ),
+                  ),
+                ),
         ],
       ),
     );
   }
-
-  //   Future<void> _showSimpleDialog(BuildContext context) async {
-  //     await showDialog<void>(
-  //       context: context,
-  //       barrierColor: ktrans,
-  //       builder: (BuildContext context) {
-  //         return AlertDialog(
-  //           backgroundColor: ktrans,
-  //           contentPadding: pda(0.0),
-  //           alignment: Alignment.center,
-  //           content: Container(
-  //             width: 333,
-  //             height: 58,
-  //             decoration: BoxDecoration(
-  //               borderRadius: BorderRadius.circular(6),
-  //               gradient: const LinearGradient(
-  //                 colors: [Color(0x19ffffff), Color(0x19d9d9d9)],
-  //                 begin: Alignment.topCenter,
-  //                 end: Alignment.bottomCenter,
-  //               ),
-  //             ),
-  //             child: Text(
-  //               'This indicates your post rank in your institute',
-  //               style: tsWW(12, FontWeight.w600),
-  //             ),
-  //           ),
-  //         );
-  //       },
-  //     );
-  //   }
 }

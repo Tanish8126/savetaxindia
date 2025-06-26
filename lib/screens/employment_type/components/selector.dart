@@ -33,7 +33,7 @@ class _SelectorState extends State<Selector> {
             autofocus: true,
             value: widget.value,
             groupValue: employmentTypeController.selectedOption.value,
-            activeColor: kGreen,
+            activeColor: kWhite,
             onChanged: (value) {
               employmentTypeController.onChangeOption(value);
             },

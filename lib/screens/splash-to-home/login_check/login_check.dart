@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/constants.dart';
-import '../../home/bottom_nav/bottom_nav.dart';
+import '../loading_data/loading_data.dart';
 import '../splash_screen/splash_screen.dart';
 
 class LoginCheck extends StatelessWidget {
@@ -23,7 +23,7 @@ class LoginCheck extends StatelessWidget {
         }
         if (snapshot.hasData) {
           //==================Main Screen==================
-          return MainScreen();
+          return LoadingData();
         } else {
           //==================Splash Screen==================
           return const SplashScreen();

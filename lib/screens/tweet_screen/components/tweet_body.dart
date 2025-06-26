@@ -26,9 +26,6 @@ class TweetBody extends StatelessWidget {
           //==========Tweet Body===========
           Tweet(tweet: tweet),
 
-          //==========Space===========
-          sh04,
-
           //==========Like + Comment + Share + Bookmark===========
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

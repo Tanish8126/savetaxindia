@@ -5,32 +5,36 @@ import 'constants.dart';
 //Common
 TextStyle tsCommon(double size, color) {
   return TextStyle(
-      color: color,
-      fontWeight: FontWeight.normal,
-      fontSize: getProportionateScreenHeight(size));
+    color: color,
+    fontWeight: FontWeight.normal,
+    fontSize: getProportionateScreenHeight(size),
+  );
 }
 
 TextStyle tsCommonW(double size, fontweight, color) {
   return TextStyle(
-      color: color,
-      fontWeight: fontweight,
-      fontSize: getProportionateScreenHeight(size));
+    color: color,
+    fontWeight: fontweight,
+    fontSize: getProportionateScreenHeight(size),
+  );
 }
 
-// //PrimaryColor
-// TextStyle tsP(double size) {
-//   return TextStyle(
-//       color: kPrimary,
-//       fontWeight: FontWeight.normal,
-//       fontSize: getProportionateScreenHeight(size));
-// }
+//PrimaryColor
+TextStyle tsP(double size) {
+  return TextStyle(
+    color: kPrimary,
+    fontWeight: FontWeight.normal,
+    fontSize: getProportionateScreenHeight(size),
+  );
+}
 
-// TextStyle tsPW(double size, weight) {
-//   return TextStyle(
-//       fontSize: getProportionateScreenHeight(size),
-//       fontWeight: weight,
-//       color: kPrimary);
-// }
+TextStyle tsPW(double size, weight) {
+  return TextStyle(
+    fontSize: getProportionateScreenHeight(size),
+    fontWeight: weight,
+    color: kPrimary,
+  );
+}
 
 //Black
 TextStyle tsB(double size) {
@@ -39,9 +43,10 @@ TextStyle tsB(double size) {
 
 TextStyle tsBW(double size, weight) {
   return TextStyle(
-      color: kBlack,
-      fontSize: getProportionateScreenHeight(size),
-      fontWeight: weight);
+    color: kBlack,
+    fontSize: getProportionateScreenHeight(size),
+    fontWeight: weight,
+  );
 }
 
 //Blue
@@ -51,9 +56,10 @@ TextStyle tsBu(double size) {
 
 TextStyle tsBuW(double size, weight) {
   return TextStyle(
-      color: kBlue,
-      fontSize: getProportionateScreenHeight(size),
-      fontWeight: weight);
+    color: kBlue,
+    fontSize: getProportionateScreenHeight(size),
+    fontWeight: weight,
+  );
 }
 
 //Red
@@ -63,9 +69,10 @@ TextStyle tsR(double size) {
 
 TextStyle tsRW(double size, weight) {
   return TextStyle(
-      color: kRed,
-      fontSize: getProportionateScreenHeight(size),
-      fontWeight: weight);
+    color: kRed,
+    fontSize: getProportionateScreenHeight(size),
+    fontWeight: weight,
+  );
 }
 
 //White
@@ -75,14 +82,16 @@ TextStyle tsW(double size) {
 
 TextStyle tsWW(double size, weight) {
   return TextStyle(
-      color: kWhite,
-      fontSize: getProportionateScreenHeight(size),
-      fontWeight: weight);
+    color: kWhite,
+    fontSize: getProportionateScreenHeight(size),
+    fontWeight: weight,
+  );
 }
 
-TextStyle tsPW(double size, weight) {
+TextStyle tsPinkW(double size, weight) {
   return TextStyle(
-      color: kPink,
-      fontSize: getProportionateScreenHeight(size),
-      fontWeight: weight);
+    color: kPink,
+    fontSize: getProportionateScreenHeight(size),
+    fontWeight: weight,
+  );
 }

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../utils/constants/constants.dart';
-import '../../tweet_screen/components/tweet_body.dart';
 import 'info.dart';
+import 'personal_tweet_body.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
+
+  // final _userRef = FirebaseFirestore.instance;
+  // final _user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +48,31 @@ class Body extends StatelessWidget {
           ),
 
           //==================User Info==================
-          const Info(),
+          Info(),
           Divider(
             color: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.4),
           ),
 
           //==================Tweet Body==================
-          const TweetBody(
+          const PersonalTweetBody(
             tweet:
                 "In the corridors of Ridgeview College, whispers spread like wildfire. From scandalous love affairs to clandestine alliances, the gossip mill churned ceaselessly. Friends turned foes, secrets unveiled, and reputations shattered. Amidst the chaos, the power of words held sway, forever altering the course of friendships and shaping the college's social landscape.",
-            userName: 'FireFighter',
-            place: 'Nims',
+          ),
+          const PersonalTweetBody(
+            tweet:
+                "In the corridors of Ridgeview College, whispers spread like wildfire. From scandalous love affairs to clandestine alliances, the gossip mill churned ceaselessly. Friends turned foes, secrets unveiled, and reputations shattered. Amidst the chaos, the power of words held sway, forever altering the course of friendships and shaping the college's social landscape.",
+          ),
+          const PersonalTweetBody(
+            tweet:
+                "In the corridors of Ridgeview College, whispers spread like wildfire. From scandalous love affairs to clandestine alliances, the gossip mill churned ceaselessly. Friends turned foes, secrets unveiled, and reputations shattered. Amidst the chaos, the power of words held sway, forever altering the course of friendships and shaping the college's social landscape.",
+          ),
+          const PersonalTweetBody(
+            tweet:
+                "In the corridors of Ridgeview College, whispers spread like wildfire. From scandalous love affairs to clandestine alliances, the gossip mill churned ceaselessly. Friends turned foes, secrets unveiled, and reputations shattered. Amidst the chaos, the power of words held sway, forever altering the course of friendships and shaping the college's social landscape.",
+          ),
+          const PersonalTweetBody(
+            tweet:
+                "In the corridors of Ridgeview College, whispers spread like wildfire. From scandalous love affairs to clandestine alliances, the gossip mill churned ceaselessly. Friends turned foes, secrets unveiled, and reputations shattered. Amidst the chaos, the power of words held sway, forever altering the course of friendships and shaping the college's social landscape.",
           ),
         ],
       ),

@@ -42,9 +42,9 @@ IconThemeData iconTheme() {
 
 AppBarTheme appBarTheme() {
   return const AppBarTheme(
-    backgroundColor: kPrimary,
+    backgroundColor: kWhite,
     elevation: 0,
     centerTitle: true,
-    titleTextStyle: TextStyle(color: kWhite, fontSize: 18),
+    titleTextStyle: TextStyle(color: kPrimary, fontSize: 18),
   );
 }

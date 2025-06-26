@@ -4,23 +4,24 @@ This document provides a comprehensive overview of the SaveTaxIndia Flutter appl
 
 ## 1. Project Overview
 
-SaveTaxIndia is a mobile application built with Flutter, designed to help users manage and calculate their taxes in India. The app seems to provide features for tax calculation based on different employment types and income sources, as well as community features like a feed. It uses Firebase for backend services like authentication and data storage.
+SaveTaxIndia is a mobile application built with Flutter, designed to help users manage and calculate their taxes in India. The app provides features for tax calculation based on different employment types and income sources, community features like a feed, and professional assistance. It uses Firebase for backend services like authentication and data storage.
 
 ## 2. Features
 
-Based on the project structure, the app appears to have the following features:
-
 - **User Authentication:** Phone number-based authentication with OTP verification.
 - **Tax Calculation:** Detailed tax calculation for different user profiles (e.g., salaried).
-- **ICAI Module:** A dedicated module for tax calculations based on guidelines from the Institute of Chartered Accountants of India (ICAI). This includes modules for:
+- **ICAI Module:** Dedicated module for tax calculations based on guidelines from the Institute of Chartered Accountants of India (ICAI), including:
     - Salaries
     - House Property
     - Capital Gains
     - PGBP (Profits and Gains from Business or Profession)
-- **Feed/Community:** A feature that resembles a social media feed (tweets), allowing users to post content.
+- **Feed/Community:** Social media-like feed (tweets), allowing users to post content.
 - **User Profiles:** Users have profiles, can follow other users, and view followers/following lists.
-- **Categories:** Content or features might be organized into categories.
+- **Categories:** Content and features organized into categories.
 - **Dashboards:** Dashboards to visualize tax-related information.
+- **Hire Expert:** Users can browse and hire tax professionals (e.g., Chartered Accountants, Tax Lawyers, Consultants) directly from the app. Each expert type is presented with a description and a 'Hire' button. A floating action button provides quick access to chat/help.
+- **Income Tax Act Browser:** Users can browse all 298 sections of the Income Tax Act, 1961, with section numbers and titles. The data is modularized for maintainability.
+- **Tax Year Selection:** Modern UI for selecting a tax year, with a 2x2 grid of years, selection highlight, and a clear call-to-action.
 
 ## 3. Project Structure
 
@@ -45,15 +46,23 @@ savetaxindia/
 
 ### Key Directories in `lib/`:
 
-- **`lib/controller`**: Contains controllers that manage the application's state and business logic (e.g., `auth_controller.dart`).
-- **`lib/icai`**: This is a core module containing the logic for various tax computations. It's broken down by income heads like `salaries`, `house property`, etc.
-- **`lib/models`**: Defines the data structures used throughout the application (e.g., `user_model.dart`, `chat_model.dart`).
-- **`lib/resources`**: Handles data operations, such as fetching data from or posting data to a server/database.
-- **`lib/screens`**: Contains the UI for different screens of the application, with each screen typically having its own subdirectory.
-- **`lib/utils`**: A collection of shared resources like colors, constants, text styles, and custom widgets.
-- **`lib/widgets`**: Contains common and reusable widgets used across multiple screens.
+- **`lib/controller`**: Application state and business logic controllers.
+- **`lib/icai`**: Core tax computation logic, organized by income head.
+- **`lib/models`**: Data structures (e.g., user, chat, feed models).
+- **`lib/resources`**: Data operations (API/database access).
+- **`lib/screens`**: UI for all features, each in its own subdirectory.
+- **`lib/utils`**: Shared resources (colors, constants, text styles, helpers).
+- **`lib/widgets`**: Common, reusable widgets.
+- **`lib/screens/hire_expert_screen`**: UI and logic for hiring tax professionals.
+- **`lib/screens/resouces_screen/components/income_tax_act`**: Modularized data and UI for browsing all sections of the Income Tax Act, 1961.
 
-## 4. Getting Started
+## 4. UI/UX Improvements
+
+- **Modern Tax Year Selection:** Clean, user-friendly screen for choosing a tax year, with a 2x2 grid, selection highlight, and a clear sign-up button.
+- **Hire Expert Screen:** Professionally designed cards for each expert type, with icons, descriptions, and a 'Hire' button. Includes a floating action button for chat/help.
+- **Income Tax Act Browser:** Efficiently displays all 298 sections using a modular data approach for performance and maintainability.
+
+## 5. Getting Started
 
 ### Prerequisites
 
@@ -77,34 +86,34 @@ savetaxindia/
     flutter run
     ```
 
-## 5. Dependencies
+## 6. Dependencies
 
 The project uses the following key dependencies:
 
 - **State Management**:
-    - `flutter_bloc`: For managing state using the BLoC pattern.
-    - `get`: For state management, dependency injection, and routing.
-    - `provider`: For state management.
+    - `flutter_bloc`: BLoC pattern for state management.
+    - `get`: State management, dependency injection, and routing.
+    - `provider`: State management.
 - **Firebase**:
-    - `firebase_core`: To initialize Firebase.
-    - `firebase_auth`: For authentication.
-    - `cloud_firestore`: For using the Firestore database.
-    - `firebase_app_check`: For protecting backend resources.
+    - `firebase_core`: Firebase initialization.
+    - `firebase_auth`: Authentication.
+    - `cloud_firestore`: Firestore database.
+    - `firebase_app_check`: Backend resource protection.
 - **UI**:
-    - `flutter_svg`: To render SVG files.
-    - `carousel_slider`: A carousel slider widget.
-    - `percent_indicator`: To display progress indicators.
-    - `pinput`: For OTP input fields.
-    - `flutter_screenutil`: For adapting UI to different screen sizes.
+    - `flutter_svg`: SVG rendering.
+    - `carousel_slider`: Carousel slider widget.
+    - `percent_indicator`: Progress indicators.
+    - `pinput`: OTP input fields.
+    - `flutter_screenutil`: Responsive UI.
 - **Utilities**:
-    - `http`: For making HTTP requests.
-    - `get_storage`: For simple key-value storage.
-    - `shared_preferences`: For storing simple data.
-    - `google_fonts`: For using fonts from Google Fonts.
-    - `url_launcher`: For launching URLs.
-    - `share_plus`: For sharing content.
+    - `http`: HTTP requests.
+    - `get_storage`: Simple key-value storage.
+    - `shared_preferences`: Simple data storage.
+    - `google_fonts`: Google Fonts integration.
+    - `url_launcher`: Launching URLs.
+    - `share_plus`: Content sharing.
 - **Local Database**:
-    - `hive` & `hive_flutter`: A lightweight and fast key-value database.
+    - `hive` & `hive_flutter`: Lightweight key-value database.
 
 ---
-*This documentation was auto-generated.* 
+*This documentation was auto-generated and last updated to reflect the latest features, including expert hiring and Income Tax Act browsing.* 
