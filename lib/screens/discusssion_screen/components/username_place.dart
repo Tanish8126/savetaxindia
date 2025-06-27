@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,7 +19,7 @@ class UserNamePlace extends StatelessWidget {
           icon: SvgPicture.asset(
             "assets/icons/gps.svg",
             height: 16.h,
-            color: kBlack,
+            colorFilter: ColorFilter.mode(kBlack, BlendMode.srcIn),
           ),
           label: Text(place, style: tsCommonW(15, FontWeight.w700, kBlack)),
         ),

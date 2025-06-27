@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/body.dart';
+import 'components/creta_tweet_body.dart';
 
 class CreateTweetScreen extends StatelessWidget {
   static String routeName = './create_tweet_screen';
@@ -9,8 +9,10 @@ class CreateTweetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      body: Body(),
-    ));
+      child: Scaffold(
+        appBar: AppBar(title: Text('Create Tweet')),
+        body: CreateTweetScreenBody(),
+      ),
+    );
   }
 }

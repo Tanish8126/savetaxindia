@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../screens/choose_tax_screen/choose_tax_screen.dart';
-import '../screens/discussion_screen.dart';
+import '../screens/create_tweet_screen/create_tweet_screen.dart';
+import '../screens/discusssion_screen/discussion_screen.dart';
 import '../screens/edit_income/edit_income.dart';
+import '../screens/edit_profile_screen/edit_profile_screen.dart';
 import '../screens/expat_dashboard.dart';
 import '../screens/hire_expert_screen/hire_expert_screen.dart';
 import '../screens/home/bottom_nav/bottom_nav.dart';
 import '../screens/my_account_screen/my_account_screen.dart';
 import '../screens/notification_screen/notification_screen.dart';
-import '../screens/profile_screen/components/editprofile_screen.dart';
 import '../screens/profile_screen/components/followers_screen.dart';
 import '../screens/profile_screen/profile_screen.dart';
 import '../screens/push_notification/push_notification.dart';
@@ -34,6 +35,7 @@ final Map<String, WidgetBuilder> routes = {
   ChangeLanguageScreen.routeName: (context) => ChangeLanguageScreen(),
   ChooseTaxYearScreen.routeName: (context) => ChooseTaxYearScreen(),
   CloseAccountScreen.routeName: (context) => CloseAccountScreen(),
+  CreateTweetScreen.routeName: (context) => CreateTweetScreen(),
   DiscussionScreen.routeName: (context) => DiscussionScreen(),
   EditIncomeScreen.routeName: (context) => EditIncomeScreen(),
   EditProfileScreen.routeName: (context) => EditProfileScreen(),
@@ -49,7 +51,8 @@ final Map<String, WidgetBuilder> routes = {
   NotificationScreen.routeName: (context) => NotificationScreen(),
   OtpScreen.routeName: (context) => OtpScreen(),
   PhoneAuthScreen.routeName: (context) => PhoneAuthScreen(),
-  ProfileScreen.routeName: (context) => ProfileScreen(),
+  ProfileScreen.routeName: (context) =>
+      ProfileScreen(uid: '', username: '', bio: ''),
   PushNotification.routeName: (context) => PushNotification(),
   ReferFriendScreen.routeName: (context) => ReferFriendScreen(),
   RefundOptionsScreen.routeName: (context) => RefundOptionsScreen(),

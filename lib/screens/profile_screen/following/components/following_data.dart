@@ -12,7 +12,10 @@ class FollowingData extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(ProfileScreen.routeName);
+        Get.toNamed(
+          ProfileScreen.routeName,
+          arguments: {'uid': '123', 'username': 'Tanish', 'bio': 'Hello'},
+        );
       },
       child: Row(
         children: [
@@ -22,10 +25,7 @@ class FollowingData extends StatelessWidget {
             radius: 20.r,
           ),
           sw04,
-          Text(
-            "Guman",
-            style: tsCommonW(16, FontWeight.w600, kPink),
-          )
+          Text("Guman", style: tsBW(16, FontWeight.w600)),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../discussion_screen.dart';
+import '../../discusssion_screen/discussion_screen.dart';
 import '../../hire_expert_screen/hire_expert_screen.dart';
 import '../../resouces_screen/resouces_screen.dart';
 import '../../upload_file_screen/upload_file_screen.dart';

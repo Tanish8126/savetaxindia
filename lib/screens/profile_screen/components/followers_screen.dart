@@ -11,26 +11,31 @@ class FollowersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          backgroundColor: const Color(0x00070707),
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            bottom: TabBar(
-                indicatorWeight: 2,
-                indicatorColor: kWhite,
-                indicatorSize: TabBarIndicatorSize.tab,
-                unselectedLabelStyle:
-                    tsCommonW(16, FontWeight.w700, const Color(0xFF272727)),
-                labelStyle: tsWW(16, FontWeight.w700),
-                tabs: const [
-                  Tab(text: "Followers"),
-                  Tab(text: "Following"),
-                ]),
+      length: 2,
+      child: Container(
+        color: kWhite,
+        child: SafeArea(
+          child: Scaffold(
+            appBar: TabBar(
+              indicatorWeight: 2,
+              indicatorColor: kBlack,
+              indicatorSize: TabBarIndicatorSize.tab,
+              unselectedLabelStyle: tsCommonW(
+                16,
+                FontWeight.w700,
+                const Color(0xFF272727),
+              ),
+              labelStyle: tsPW(16, FontWeight.w700),
+              tabs: const [
+                Tab(text: "Followers"),
+                Tab(text: "Following"),
+              ],
+            ),
+
+            body: const TabBarView(children: [Followers(), Following()]),
           ),
-          body: const TabBarView(
-            children: [Followers(), Following()],
-          ),
-        ));
+        ),
+      ),
+    );
   }
 }

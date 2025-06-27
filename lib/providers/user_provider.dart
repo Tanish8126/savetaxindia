@@ -9,6 +9,7 @@ class UserProvider extends ChangeNotifier {
     email: '',
     userName: '',
     photoUrl: '',
+    bio: '',
   );
 
   SignUpFormData get user => _user;

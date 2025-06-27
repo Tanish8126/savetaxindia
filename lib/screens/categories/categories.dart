@@ -24,6 +24,8 @@ class Categories extends StatelessWidget {
             children: [
               Icon(Icons.explore, color: Colors.green.shade700, size: 24),
               const SizedBox(width: 8),
+
+              //=================Text=============//
               Text(
                 "What You're Looking For?",
                 textAlign: TextAlign.left,
@@ -32,6 +34,8 @@ class Categories extends StatelessWidget {
             ],
           ),
           sh01,
+
+          //=================Categories=============//
           Container(
             decoration: BoxDecoration(
               color: Colors.green.shade50,
@@ -58,13 +62,12 @@ class Categories extends StatelessWidget {
                     ),
                   );
                 } else {
+                  //=================Shimmer Effect=============//
                   return Padding(
                     padding: pds(0.02, 0),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ShimmerEffect(height: 0.15, width: 0.25),
-                        ShimmerEffect(height: 0.15, width: 0.25),
                         ShimmerEffect(height: 0.15, width: 0.25),
                         ShimmerEffect(height: 0.15, width: 0.25),
                         ShimmerEffect(height: 0.15, width: 0.25),

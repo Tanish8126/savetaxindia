@@ -1,14 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:typed_data';
 
 import '../models/feed_model.dart';
 import '../models/phone_data_model.dart';
+import '../providers/user_provider.dart';
 import '../utils/constants/constants.dart';
 import '../utils/snackbar.dart';
 
 class PostDataMethods {
   final _userRef = FirebaseFirestore.instance;
+  final UserProvider _userProvider = Get.put(UserProvider());
 
   //================USER RELATED=============//
 
@@ -30,23 +34,35 @@ class PostDataMethods {
 
   //Save Tweet to Firebase
 
-  Future<String> saveTweet(BuildContext context, String tweet) async {
-    //  final user = Provider.of<UserProvider>(context, listen: false).user;
+  Future<String> saveTweet(
+    BuildContext context,
+    String tweet, {
+    String? title,
+    Uint8List? image,
+  }) async {
     String channelId = '';
+    String? imageUrl;
     try {
+      if (image != null) {
+        // Upload image to Firebase Storage
+        final storageRef = FirebaseStorage.instance.ref();
+        final fileName =
+            'tweet_images/${DateTime.now().millisecondsSinceEpoch}.png';
+        final uploadTask = await storageRef.child(fileName).putData(image);
+        imageUrl = await uploadTask.ref.getDownloadURL();
+      }
       FeedModel feedModel = FeedModel(
-        userId: '12345',
+        userId: _userProvider.user.uid,
         createdAt: DateTime.now(),
         description: tweet,
+        imagePath: imageUrl,
+        // Add title if you add it to FeedModel
       );
-
-      _userRef.collection('tweet').doc().set(feedModel.toMap());
+      _userRef.collection('tweets').doc().set(feedModel.toMap());
     } on FirebaseException catch (e) {
-      // Check if the widget is still mounted before using context
       if (context.mounted) {
         showSnackBar(context, e.message!);
       } else {
-        // Use Get.snackbar as fallback when context is not available
         Get.snackbar(
           'Error',
           e.message!,
@@ -60,13 +76,27 @@ class PostDataMethods {
   }
 
   //Add Like To Tweet
-  void addLikeToTweet(FeedModel tweet, String userId) async {
-    FirebaseFirestore.instance
-        .collection('tweet')
-        .doc(tweet.key!)
-        .collection('likeList')
-        .doc(userId)
-        .set({'userId': userId, 'likedAt': DateTime.now()});
+  Future<void> addLikeToTweet(FeedModel tweet, String userId) async {
+    final tweetDoc = FirebaseFirestore.instance
+        .collection('tweets')
+        .doc(tweet.key);
+    final likeDoc = tweetDoc.collection('likeList').doc(userId);
+    final likeSnapshot = await likeDoc.get();
+    if (likeSnapshot.exists) {
+      // Unlike: remove like
+      await likeDoc.delete();
+      await tweetDoc.update({
+        'likeCount': FieldValue.increment(-1),
+        'likeList': FieldValue.arrayRemove([userId]),
+      });
+    } else {
+      // Like: add like
+      await likeDoc.set({'userId': userId, 'likedAt': DateTime.now()});
+      await tweetDoc.update({
+        'likeCount': FieldValue.increment(1),
+        'likeList': FieldValue.arrayUnion([userId]),
+      });
+    }
   }
 
   //Add Bookmark to Tweet

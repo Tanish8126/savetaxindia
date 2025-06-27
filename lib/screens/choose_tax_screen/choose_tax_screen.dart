@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/body.dart';
+import 'components/choose_tax_body.dart';
 
 class ChooseTaxYearScreen extends StatelessWidget {
   static const String routeName = '/choose_tax_year';
@@ -10,7 +10,7 @@ class ChooseTaxYearScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(leading: BackButton(), elevation: 0),
-      body: Body(),
+      body: ChooseTaxScreenBody(),
     );
   }
 }

@@ -8,8 +8,8 @@ import '../../notification_screen/notification_screen.dart';
 import 'discount_banner.dart';
 import 'promt_field.dart';
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class HomeBody extends StatelessWidget {
+  const HomeBody({super.key});
 
   @override
   Widget build(BuildContext context) {

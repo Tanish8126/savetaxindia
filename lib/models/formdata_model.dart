@@ -4,6 +4,7 @@ class SignUpFormData {
   final String userName;
   final String email;
   final String phoneNumber;
+  final String bio;
 
   SignUpFormData({
     required this.uid,
@@ -11,6 +12,7 @@ class SignUpFormData {
     required this.email,
     required this.photoUrl,
     required this.userName,
+    required this.bio,
   });
   Map<String, dynamic> toJson() {
     return {
@@ -18,7 +20,8 @@ class SignUpFormData {
       'photoUrl': photoUrl,
       'userName': userName,
       'email': email,
-      'phonenumber': phoneNumber
+      'phonenumber': phoneNumber,
+      'bio': bio,
     };
   }
 
@@ -29,6 +32,7 @@ class SignUpFormData {
       userName: map['userName'] ?? '',
       email: map['email'] ?? '',
       phoneNumber: map['phoneNumber'] ?? '',
+      bio: map['bio'] ?? '',
     );
   }
 }

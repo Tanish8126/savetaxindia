@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/body.dart';
+import 'components/my_account_body.dart';
 
 class MyAccountScreen extends StatelessWidget {
   static const routeName = '/my_account_screen';
@@ -8,6 +8,6 @@ class MyAccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Body());
+    return Scaffold(body: MyAccountScreenBody());
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/constants.dart';
-import '../../tweet_screen/components/tweet_exports.dart';
 import 'personal_tweet.dart';
 
 class PersonalTweetBody extends StatelessWidget {
@@ -21,16 +20,15 @@ class PersonalTweetBody extends StatelessWidget {
           //==========Space===========
 
           //==========Like + Comment + Share + Bookmark===========
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const LikeTweet(),
-              const TweetComment(),
-              ShareTweet(tweet: tweet),
-              const BookmarkTweet(),
-            ],
-          ),
-
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     LikeTweet(tweet: tweet, userId: userId),
+          //     TweetComment(tweet: tweet, userId: userId),
+          //     ShareTweet(tweet: tweet, userId: userId),
+          //     BookmarkTweet(tweet: tweet, userId: userId),
+          //   ],
+          // ),
           Divider(
             color: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.4),
             endIndent: 20,

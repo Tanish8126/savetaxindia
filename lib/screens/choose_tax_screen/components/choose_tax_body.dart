@@ -6,8 +6,8 @@ import '../../tax_input_screen/tax_input_screen.dart';
 import 'bottom_section.dart';
 import 'year_box.dart';
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class ChooseTaxScreenBody extends StatelessWidget {
+  const ChooseTaxScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,8 @@ import '../../../utils/constants/constants.dart';
 import 'setting_list.dart';
 import 'support_section.dart';
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class MyAccountScreenBody extends StatelessWidget {
+  const MyAccountScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {

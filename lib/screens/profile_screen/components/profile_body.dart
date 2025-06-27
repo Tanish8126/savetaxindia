@@ -5,11 +5,17 @@ import '../../../utils/constants/constants.dart';
 import 'info.dart';
 import 'personal_tweet_body.dart';
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class ProfileScreenBody extends StatelessWidget {
+  const ProfileScreenBody({
+    super.key,
+    required this.uid,
+    required this.username,
+    required this.bio,
+  });
 
-  // final _userRef = FirebaseFirestore.instance;
-  // final _user = FirebaseAuth.instance.currentUser;
+  final String uid;
+  final String username;
+  final String bio;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +54,7 @@ class Body extends StatelessWidget {
           ),
 
           //==================User Info==================
-          Info(),
+          Info(username: username, bio: bio, uid: uid),
           Divider(
             color: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.4),
           ),

@@ -7,7 +7,6 @@ import '../../../models/formdata_model.dart';
 import '../../../providers/user_provider.dart';
 import '../../../resources/auth_methods.dart';
 import '../../home/bottom_nav/bottom_nav.dart';
-import '../splash_screen/splash_screen.dart';
 
 class LoadingData extends StatelessWidget {
   static const routeName = '/loading-data';
@@ -28,16 +27,12 @@ class LoadingData extends StatelessWidget {
             return value;
           }),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         }
-        if (snapshot.hasData) {
-          return MainScreen();
-        } else {
-          return SplashScreen();
-        }
+        return MainScreen();
       },
     );
   }

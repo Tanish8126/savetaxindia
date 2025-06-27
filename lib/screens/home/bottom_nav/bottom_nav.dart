@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:savetaxindia/screens/discussion_screen.dart';
-import 'package:savetaxindia/screens/subscription%20screen/subscription_screen.dart';
+import 'package:provider/provider.dart';
 
+import '../../../providers/user_provider.dart';
 import '../../../utils/constants/constants.dart';
+import '../../discusssion_screen/discussion_screen.dart';
 import '../../profile_screen/profile_screen.dart';
+import '../../subscription screen/subscription_screen.dart';
 import '../home.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,12 +21,22 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _page = 0;
   var userData = {};
-  List<Widget> pages = const [
-    ProfileScreen(),
-    HomeScreen(),
-    DiscussionScreen(),
-    SubscriptionScreen(),
-  ];
+  List<Widget>? pages;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final uid = Provider.of<UserProvider>(context).user.uid;
+    final username = "";
+    final bio = "";
+
+    pages = [
+      HomeScreen(),
+      DiscussionScreen(),
+      SubscriptionScreen(),
+      ProfileScreen(uid: uid, username: username, bio: bio),
+    ];
+  }
 
   void onPageChange(int page) {
     setState(() {
@@ -95,7 +107,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-      body: pages[_page],
+      body: pages?[_page],
     );
   }
 }
