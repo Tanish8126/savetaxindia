@@ -321,9 +321,43 @@ savetaxindia/
 
 ## 11. Testing
 
-- **Widget Tests:** UI component testing
-- **Unit Tests:** Business logic testing
-- **Integration Tests:** End-to-end functionality testing
+The SaveTaxIndia app includes comprehensive automated tests to ensure code quality and reliability. The test suite covers:
+
+- **Widget Tests:** UI component and screen rendering
+- **Unit Tests:** Business logic, models, providers, and controllers
+- **Integration Tests:** (Planned) End-to-end flows
+
+### Test Structure
+
+All tests are located in the `test/` directory, mirroring the structure of the `lib/` directory for easy navigation. Key areas covered:
+
+- `test/widget_test.dart`: Main app widget and navigation tests
+- `test/models/`: Unit tests for all data models (e.g., user, feed, chat, form data)
+- `test/providers/`: Tests for state management providers (e.g., user provider)
+- `test/controller/`: Tests for business logic controllers (e.g., auth controller)
+- `test/utils/`: Tests for utility classes, constants, and reusable widgets (e.g., colors, buttons, form error)
+
+### Running Tests
+
+To run all tests, use:
+```sh
+flutter test
+```
+
+You can also run a specific test file:
+```sh
+flutter test test/models/user_model_test.dart
+```
+
+### Test Coverage
+
+- **Models:** Serialization, deserialization, equality, and business logic
+- **Providers:** State updates and notification
+- **Controllers:** State management and logic (with/without mocks)
+- **Widgets/Utilities:** Rendering, interaction, and edge cases
+- **Main App:** App initialization, navigation, and UI properties
+
+All new features and bug fixes should be accompanied by relevant tests to maintain high code quality.
 
 ## 12. Deployment
 

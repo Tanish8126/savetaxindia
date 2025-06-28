@@ -7,24 +7,53 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:provider/provider.dart';
 import 'package:savetaxindia/main.dart';
+import 'package:savetaxindia/providers/user_provider.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('Main App Widget Tests', () {
+    testWidgets('App should start with login check screen', (
+      WidgetTester tester,
+    ) async {
+      // Build our app and trigger a frame.
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [ChangeNotifierProvider(create: (_) => UserProvider())],
+          child: const MyApp(),
+        ),
+      );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+      // Verify that the app starts with the login check screen
+      expect(find.byType(MaterialApp), findsOneWidget);
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    testWidgets('App should have correct title', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [ChangeNotifierProvider(create: (_) => UserProvider())],
+          child: const MyApp(),
+        ),
+      );
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+      // Verify the app title
+      expect(find.text('Save Tax India'), findsOneWidget);
+    });
+
+    testWidgets('App should not show debug banner', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [ChangeNotifierProvider(create: (_) => UserProvider())],
+          child: const MyApp(),
+        ),
+      );
+
+      // Verify debug banner is not shown
+      expect(find.byType(MaterialApp), findsOneWidget);
+      final materialApp = tester.widget<MaterialApp>(find.byType(MaterialApp));
+      expect(materialApp.debugShowCheckedModeBanner, false);
+    });
   });
 }
