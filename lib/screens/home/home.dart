@@ -9,7 +9,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    //==================Screen Size Initialization==================
+    SizeConfig.init(context);
     return SafeArea(child: Scaffold(body: const HomeBody()));
   }
 }

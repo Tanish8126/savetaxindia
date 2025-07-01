@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/edit_profike_body.dart';
+import 'components/edit_profile_body.dart';
 
 class EditProfileScreen extends StatelessWidget {
   static String routeName = './editprofile_screen';

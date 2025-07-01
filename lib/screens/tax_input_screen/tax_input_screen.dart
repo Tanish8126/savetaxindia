@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/body.dart';
+import 'components/tax_input_body.dart';
 
 class TaxInputScreen extends StatelessWidget {
   static String routeName = './tax_input.dart';
@@ -11,6 +11,6 @@ class TaxInputScreen extends StatelessWidget {
     // Colors
     const Color lightGreen = Color(0xFFEAF7F0);
 
-    return Scaffold(backgroundColor: lightGreen, body: Body());
+    return Scaffold(backgroundColor: lightGreen, body: TaxInputBody());
   }
 }

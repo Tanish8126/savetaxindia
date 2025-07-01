@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants/sizedbox.dart';
-import '../../edit_income/edit_income.dart';
+import '../../edit_income_screen/edit_income_screen.dart';
 import 'infocard.dart';
 
 Widget regimeSummaryContent(Color primaryGreen) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/body.dart';
+import 'components/upload_screen_body.dart';
 
 class UploadFileScreen extends StatelessWidget {
   static String routeName = '/upload_file_screen';
@@ -8,6 +8,6 @@ class UploadFileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Body());
+    return Scaffold(body: UploadScreenBody());
   }
 }

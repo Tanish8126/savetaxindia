@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/constants.dart';
-import 'components/body.dart';
+import 'components/phone_auth_body.dart';
 
 class PhoneAuthScreen extends StatelessWidget {
   static String routeName = "./phone_auth_screen.dart";
@@ -12,7 +12,7 @@ class PhoneAuthScreen extends StatelessWidget {
     return Scaffold(
       //Change the background color to kPrimary
       backgroundColor: kPrimary,
-      body: Body(),
+      body: PhoneAuthBody(),
     );
   }
 }

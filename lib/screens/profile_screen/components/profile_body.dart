@@ -5,6 +5,8 @@ import '../../../utils/constants/constants.dart';
 import 'info.dart';
 import 'personal_tweet_body.dart';
 
+// ProfileScreenBody builds the main content of the profile screen.
+// It displays the background image, profile image, user info, and tweets.
 class ProfileScreenBody extends StatelessWidget {
   const ProfileScreenBody({
     super.key,
@@ -13,8 +15,11 @@ class ProfileScreenBody extends StatelessWidget {
     required this.bio,
   });
 
+  // User's unique id
   final String uid;
+  // User's username
   final String username;
+  // User's bio
   final String bio;
 
   @override
@@ -22,6 +27,7 @@ class ProfileScreenBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          // Stack for background and profile image
           Stack(
             alignment: Alignment.bottomLeft,
             children: [
@@ -39,6 +45,7 @@ class ProfileScreenBody extends StatelessWidget {
                 padding: pdo(0, 0, 0.03, 0),
                 child: GestureDetector(
                   onTap: () {
+                    // Show dialog to edit profile image
                     _showSimpleDialog(context);
                   },
                   child: CircleAvatar(
@@ -54,12 +61,14 @@ class ProfileScreenBody extends StatelessWidget {
           ),
 
           //==================User Info==================
+          // Displays username, bio, edit button, followers, etc.
           Info(username: username, bio: bio, uid: uid),
           Divider(
             color: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.4),
           ),
 
           //==================Tweet Body==================
+          // List of user's tweets (currently hardcoded)
           const PersonalTweetBody(
             tweet:
                 "In the corridors of Ridgeview College, whispers spread like wildfire. From scandalous love affairs to clandestine alliances, the gossip mill churned ceaselessly. Friends turned foes, secrets unveiled, and reputations shattered. Amidst the chaos, the power of words held sway, forever altering the course of friendships and shaping the college's social landscape.",
@@ -86,6 +95,7 @@ class ProfileScreenBody extends StatelessWidget {
   }
 
   //==================Edit Image Dialog==================
+  // Shows a dialog for editing the profile image (currently only shows Cancel)
   Future<void> _showSimpleDialog(BuildContext context) async {
     await showDialog<void>(
       context: context,

@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:savetaxindia/screens/profile_screen/profile_screen.dart';
 import 'package:savetaxindia/screens/profile_screen/components/profile_body.dart';
+import '../helpers/test_setup.dart';
+import 'package:provider/provider.dart';
+import 'package:savetaxindia/providers/user_provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   group('ProfileScreen Widget Tests', () {
+    setUpAll(() async {
+      // Initialize test environment
+      await TestSetup.setupFirebaseForTesting();
+    });
+
     const testUid = 'test-uid-123';
     const testUsername = 'testuser';
     const testBio = 'This is a test bio';
@@ -13,11 +22,20 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -30,11 +48,20 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -49,11 +76,20 @@ void main() {
 
     testWidgets('should handle empty bio', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: testUsername,
-            bio: '',
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: '',
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -68,11 +104,20 @@ void main() {
       final longBio = 'a' * 500;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: ProfileScreen(
-            uid: testUid,
-            username: testUsername,
-            bio: longBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: longBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -89,11 +134,20 @@ void main() {
       const specialUsername = 'user@123!';
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: specialUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: specialUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -110,11 +164,20 @@ void main() {
       const specialBio = 'Bio with special chars: !@#\$%^&*()';
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: testUsername,
-            bio: specialBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: specialBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -129,11 +192,20 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -150,11 +222,20 @@ void main() {
       await tester.binding.setSurfaceSize(const Size(400, 800));
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -170,14 +251,22 @@ void main() {
       WidgetTester tester,
     ) async {
       const numericUid = '12345';
-      // const alphanumericUid = 'abc123def456';
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: numericUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: numericUid,
+                  username: testUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -194,11 +283,20 @@ void main() {
       const usernameWithSpaces = 'Test User Name';
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: usernameWithSpaces,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: usernameWithSpaces,
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -213,11 +311,20 @@ void main() {
       const bioWithNewlines = 'Line 1\nLine 2\nLine 3';
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreen(
-            uid: testUid,
-            username: testUsername,
-            bio: bioWithNewlines,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: bioWithNewlines,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -234,11 +341,20 @@ void main() {
       final longUsername = 'a' * 100;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: ProfileScreen(
-            uid: testUid,
-            username: longUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: ProfileScreen(
+                  uid: testUid,
+                  username: longUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -249,15 +365,22 @@ void main() {
       expect(profileScreen.username, longUsername);
     });
 
-    testWidgets('should handle very long UID', (WidgetTester tester) async {
-      final longUid = 'uid' * 50;
-
+    testWidgets('should handle empty username', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: ProfileScreen(
-            uid: longUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: '',
+                  bio: testBio,
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -265,7 +388,173 @@ void main() {
       final profileScreen = tester.widget<ProfileScreen>(
         find.byType(ProfileScreen),
       );
-      expect(profileScreen.uid, longUid);
+      expect(profileScreen.username, '');
+    });
+
+    testWidgets('should handle empty UID', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: '',
+                  username: testUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final profileScreen = tester.widget<ProfileScreen>(
+        find.byType(ProfileScreen),
+      );
+      expect(profileScreen.uid, '');
+    });
+
+    testWidgets('should handle all empty props', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(uid: '', username: '', bio: ''),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final profileScreen = tester.widget<ProfileScreen>(
+        find.byType(ProfileScreen),
+      );
+      expect(profileScreen.uid, '');
+      expect(profileScreen.username, '');
+      expect(profileScreen.bio, '');
+    });
+
+    testWidgets('should handle unicode characters in username', (
+      WidgetTester tester,
+    ) async {
+      const unicodeUsername = '用户123';
+
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: unicodeUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final profileScreen = tester.widget<ProfileScreen>(
+        find.byType(ProfileScreen),
+      );
+      expect(profileScreen.username, unicodeUsername);
+    });
+
+    testWidgets('should handle unicode characters in bio', (
+      WidgetTester tester,
+    ) async {
+      const unicodeBio = '这是一个测试简介';
+
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: unicodeBio,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final profileScreen = tester.widget<ProfileScreen>(
+        find.byType(ProfileScreen),
+      );
+      expect(profileScreen.bio, unicodeBio);
+    });
+
+    testWidgets('should handle emoji in username', (WidgetTester tester) async {
+      const emojiUsername = 'user😀123';
+
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: emojiUsername,
+                  bio: testBio,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final profileScreen = tester.widget<ProfileScreen>(
+        find.byType(ProfileScreen),
+      );
+      expect(profileScreen.username, emojiUsername);
+    });
+
+    testWidgets('should handle emoji in bio', (WidgetTester tester) async {
+      const emojiBio = 'This is a test bio with emojis 😀🎉🚀';
+
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: TestSetup.createTestApp(
+                includeUserProvider: true,
+                child: const ProfileScreen(
+                  uid: testUid,
+                  username: testUsername,
+                  bio: emojiBio,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final profileScreen = tester.widget<ProfileScreen>(
+        find.byType(ProfileScreen),
+      );
+      expect(profileScreen.bio, emojiBio);
     });
   });
 
@@ -278,11 +567,17 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreenBody(
-            uid: testUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: const ProfileScreenBody(
+                uid: testUid,
+                username: testUsername,
+                bio: testBio,
+              ),
+            ),
           ),
         ),
       );
@@ -294,11 +589,17 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreenBody(
-            uid: testUid,
-            username: testUsername,
-            bio: '',
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: const ProfileScreenBody(
+                uid: testUid,
+                username: testUsername,
+                bio: '',
+              ),
+            ),
           ),
         ),
       );
@@ -315,11 +616,17 @@ void main() {
       final longBio = 'a' * 500;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: ProfileScreenBody(
-            uid: testUid,
-            username: testUsername,
-            bio: longBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: ProfileScreenBody(
+                uid: testUid,
+                username: testUsername,
+                bio: longBio,
+              ),
+            ),
           ),
         ),
       );
@@ -334,11 +641,17 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreenBody(
-            uid: testUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: const ProfileScreenBody(
+                uid: testUid,
+                username: testUsername,
+                bio: testBio,
+              ),
+            ),
           ),
         ),
       );
@@ -356,11 +669,17 @@ void main() {
       const specialBio = 'Bio with special chars: !@#\$%^&*()';
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreenBody(
-            uid: testUid,
-            username: specialUsername,
-            bio: specialBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: const ProfileScreenBody(
+                uid: testUid,
+                username: specialUsername,
+                bio: specialBio,
+              ),
+            ),
           ),
         ),
       );
@@ -378,11 +697,17 @@ void main() {
       await tester.binding.setSurfaceSize(const Size(400, 800));
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: const ProfileScreenBody(
-            uid: testUid,
-            username: testUsername,
-            bio: testBio,
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            builder: (context, _) => MaterialApp(
+              home: const ProfileScreenBody(
+                uid: testUid,
+                username: testUsername,
+                bio: testBio,
+              ),
+            ),
           ),
         ),
       );

@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 
 import '../../../providers/user_provider.dart';
 import '../../../utils/constants/constants.dart';
-import '../../discusssion_screen/discussion_screen.dart';
+import '../../discussion_screen/discussion_screen.dart';
 import '../../profile_screen/profile_screen.dart';
-import '../../subscription screen/subscription_screen.dart';
+import '../../subscription_screen/subscription_screen.dart';
 import '../home.dart';
 
 class MainScreen extends StatefulWidget {
@@ -46,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    SizeConfig.init(context);
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

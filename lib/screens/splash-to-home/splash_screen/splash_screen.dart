@@ -9,7 +9,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    //==================Screen Size Initialization==================
+    SizeConfig.init(context);
     return Scaffold(
       //Change the background color to kPrimary
       backgroundColor: kPrimary,

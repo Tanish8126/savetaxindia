@@ -10,9 +10,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:savetaxindia/main.dart';
 import 'package:savetaxindia/providers/user_provider.dart';
+import 'helpers/test_setup.dart';
 
 void main() {
   group('Main App Widget Tests', () {
+    setUpAll(() async {
+      // Initialize Firebase for testing
+      await TestSetup.setupFirebaseForTesting();
+    });
+
     testWidgets('App should start with login check screen', (
       WidgetTester tester,
     ) async {

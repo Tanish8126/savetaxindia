@@ -152,7 +152,6 @@ savetaxindia/
 ### State Management
 - **Provider:** State management for user data
 - **GetX:** State management, dependency injection, and routing
-- **BLoC:** Business Logic Component pattern for complex state management
 
 ### Backend Services
 - **Firebase Core:** Firebase initialization and configuration

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/constants/constants.dart';
 import 'components/following_data.dart';
 
+// Following widget displays a list of users the current user is following, with a search field.
 class Following extends StatelessWidget {
   static String roteName = './following';
   const Following({super.key});
@@ -14,6 +15,7 @@ class Following extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            // Search field for filtering following users
             TextFormField(
               decoration: InputDecoration(
                 contentPadding: pda(0.02),
@@ -38,6 +40,7 @@ class Following extends StatelessWidget {
               ),
             ),
             sh03,
+            // List of following users (currently hardcoded with FollowingData widgets)
             const FollowingData(),
             sh02,
             const FollowingData(),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../notification_screen/notification_screen.dart';
-import '../../tree.my_account/change_language/change_language.dart';
-import '../../tree.my_account/close_account_screen/close_account_screen.dart';
-import '../../tree.my_account/refer_friend_screen/refer_friend_screen.dart';
+import '../../tree_my_account/change_language/change_language.dart';
+import '../../tree_my_account/close_account_screen/close_account_screen.dart';
+import '../../tree_my_account/refer_friend_screen/refer_friend_screen.dart';
 import '../../upload_file_screen/upload_file_screen.dart';
 
 final settings = [

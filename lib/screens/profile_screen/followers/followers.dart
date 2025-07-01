@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/constants/constants.dart';
 import '../following/components/following_data.dart';
 
+// Followers widget displays a list of followers with a search field.
 class Followers extends StatelessWidget {
   static String roteName = './followers';
   const Followers({super.key});
@@ -14,6 +15,7 @@ class Followers extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            // Search field for filtering followers
             TextFormField(
               decoration: InputDecoration(
                 contentPadding: pda(0.02),
@@ -38,6 +40,7 @@ class Followers extends StatelessWidget {
               ),
             ),
             sh03,
+            // List of followers (currently hardcoded with FollowingData widgets)
             const FollowingData(),
             sh02,
             const FollowingData(),

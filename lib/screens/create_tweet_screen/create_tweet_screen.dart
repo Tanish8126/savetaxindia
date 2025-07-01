@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/creta_tweet_body.dart';
+import 'components/create_tweet_body.dart';
 
 class CreateTweetScreen extends StatelessWidget {
   static String routeName = './create_tweet_screen';

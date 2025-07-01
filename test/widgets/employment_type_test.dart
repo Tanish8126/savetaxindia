@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:savetaxindia/screens/employment_type/employment_type.dart';
 import 'package:savetaxindia/screens/employment_type/components/selector.dart';
+import '../helpers/test_setup.dart';
 
 void main() {
   group('EmploymentType Widget Tests', () {
+    setUpAll(() async {
+      // Initialize Firebase for testing
+      await TestSetup.setupFirebaseForTesting();
+    });
+
     testWidgets('should render EmploymentType with correct structure', (
       WidgetTester tester,
     ) async {
@@ -192,6 +198,11 @@ void main() {
   });
 
   group('Selector Widget Tests', () {
+    setUpAll(() async {
+      // Initialize Firebase for testing
+      await TestSetup.setupFirebaseForTesting();
+    });
+
     testWidgets('should render Selector with correct properties', (
       WidgetTester tester,
     ) async {

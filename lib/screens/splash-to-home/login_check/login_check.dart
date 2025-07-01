@@ -12,7 +12,7 @@ class LoginCheck extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //==================Screen Size Initialization==================
-    SizeConfig().init(context);
+    SizeConfig.init(context);
 
     //==================Stream Builder=============== ===
     return StreamBuilder<User?>(

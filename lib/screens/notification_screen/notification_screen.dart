@@ -1,69 +1,85 @@
 import 'package:flutter/material.dart';
-import '../../models/notification_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class NotificationScreen extends StatelessWidget {
+import '../../models/notification_model.dart';
+import '../../resources/messaging_service.dart';
+import '../../utils/constants/constants.dart';
+
+class NotificationScreen extends StatefulWidget {
   static String routeName = "/notification_screen";
   const NotificationScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Sample notifications
-    final List<NotificationModel> notifications = [
-      NotificationModel(
-        id: '1',
-        tweetKey: 'tweet1',
-        type: 'like',
-        createdAt: DateTime.now()
-            .subtract(Duration(minutes: 5))
-            .toIso8601String(),
-        updatedAt: null,
-        data: {'title': 'New Like', 'body': 'Someone liked your post.'},
-      ),
-      NotificationModel(
-        id: '2',
-        tweetKey: 'tweet2',
-        type: 'comment',
-        createdAt: DateTime.now()
-            .subtract(Duration(hours: 1))
-            .toIso8601String(),
-        updatedAt: null,
-        data: {'title': 'New Comment', 'body': 'You have a new comment.'},
-      ),
-      NotificationModel(
-        id: '3',
-        tweetKey: 'tweet3',
-        type: 'follow',
-        createdAt: DateTime.now().subtract(Duration(days: 1)).toIso8601String(),
-        updatedAt: null,
-        data: {'title': 'New Follower', 'body': 'You have a new follower!'},
-      ),
-    ];
+  State<NotificationScreen> createState() => _NotificationScreenState();
+}
 
+class _NotificationScreenState extends State<NotificationScreen> {
+  final messagingService = MessagingService();
+
+  @override
+  void initState() {
+    super.initState();
+    messagingService.init();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Listen to notifications collection in Firestore
     return Scaffold(
       appBar: AppBar(title: const Text('Notifications'), centerTitle: true),
-      body: ListView.separated(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-        itemCount: notifications.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 8),
-        itemBuilder: (context, index) {
-          final notification = notifications[index];
-          return Card(
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: ListTile(
-              leading: _iconForType(notification.type),
-              title: Text(notification.data?["title"] ?? "Notification"),
-              subtitle: Text(notification.data?["body"] ?? ""),
-              trailing: Text(_formatTime(notification.createdAt)),
-            ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('notifications')
+            .orderBy('createdAt', descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: \\${snapshot.error}'));
+          }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(
+              child: Text('No notifications found.', style: tsB(18)),
+            );
+          }
+
+          // Map Firestore documents to NotificationModel
+          final notifications = snapshot.data!.docs.map((doc) {
+            return NotificationModel.fromJson(
+              doc.id,
+              doc.data() as Map<String, dynamic>,
+            );
+          }).toList();
+
+          return ListView.separated(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+            itemCount: notifications.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 8),
+            itemBuilder: (context, index) {
+              final notification = notifications[index];
+              return Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ListTile(
+                  leading: _iconForType(notification.type),
+                  title: Text(notification.data?["title"] ?? "Notification"),
+                  subtitle: Text(notification.data?["body"] ?? ""),
+                  trailing: Text(_formatTime(notification.createdAt)),
+                  onTap: () {},
+                ),
+              );
+            },
           );
         },
       ),
     );
   }
 
+  // Returns an icon based on notification type
   Widget _iconForType(String? type) {
     switch (type) {
       case 'like':
@@ -77,6 +93,7 @@ class NotificationScreen extends StatelessWidget {
     }
   }
 
+  // Formats the notification time for display
   String _formatTime(String? isoString) {
     if (isoString == null) return '';
     final date = DateTime.tryParse(isoString);
@@ -84,11 +101,11 @@ class NotificationScreen extends StatelessWidget {
     final now = DateTime.now();
     final diff = now.difference(date);
     if (diff.inMinutes < 60) {
-      return '${diff.inMinutes}m ago';
+      return '\\${diff.inMinutes}m ago';
     } else if (diff.inHours < 24) {
-      return '${diff.inHours}h ago';
+      return '\\${diff.inHours}h ago';
     } else {
-      return '${diff.inDays}d ago';
+      return '\\${diff.inDays}d ago';
     }
   }
 }

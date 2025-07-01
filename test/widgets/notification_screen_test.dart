@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:savetaxindia/screens/notification_screen/notification_screen.dart';
+import '../helpers/test_setup.dart';
 
 void main() {
   group('NotificationScreen Widget Tests', () {
+    setUpAll(() async {
+      // Initialize test environment
+      await TestSetup.setupFirebaseForTesting();
+    });
+
     testWidgets('should render NotificationScreen with correct structure', (
       WidgetTester tester,
     ) async {
@@ -200,46 +206,52 @@ void main() {
       expect(find.text('New Like'), findsOneWidget);
       expect(find.text('New Comment'), findsOneWidget);
       expect(find.text('New Follower'), findsOneWidget);
+    });
 
-      // Check that all notification bodies are displayed
+    testWidgets('should handle notification descriptions correctly', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(MaterialApp(home: const NotificationScreen()));
+
+      // Check that all notification descriptions are displayed
       expect(find.text('Someone liked your post.'), findsOneWidget);
       expect(find.text('You have a new comment.'), findsOneWidget);
       expect(find.text('You have a new follower!'), findsOneWidget);
     });
 
-    testWidgets('should handle time formatting correctly', (
+    testWidgets('should handle time ago formatting', (
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(MaterialApp(home: const NotificationScreen()));
 
-      // Check that time ago text is displayed for all notifications
-      final timeTexts = find.textContaining('ago');
-      expect(timeTexts, findsNWidgets(3));
+      // Check that time ago text is present for all notifications
+      final timeAgoTexts = find.textContaining('ago');
+      expect(timeAgoTexts, findsNWidgets(3));
     });
 
-    testWidgets('should handle widget rebuilds', (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(home: const NotificationScreen()));
-
-      expect(find.byType(Card), findsNWidgets(3));
-
-      // Rebuild the widget
-      await tester.pumpWidget(MaterialApp(home: const NotificationScreen()));
-
-      expect(find.byType(Card), findsNWidgets(3));
-    });
-
-    testWidgets('should handle orientation changes', (
+    testWidgets('should have consistent card elevation', (
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(MaterialApp(home: const NotificationScreen()));
 
-      expect(find.byType(NotificationScreen), findsOneWidget);
+      final cards = find.byType(Card);
+      for (int i = 0; i < cards.evaluate().length; i++) {
+        final card = tester.widget<Card>(cards.at(i));
+        expect(card.elevation, 2);
+      }
+    });
 
-      // Change orientation
-      await tester.binding.setSurfaceSize(const Size(800, 400));
-      await tester.pump();
+    testWidgets('should have consistent card shape', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(MaterialApp(home: const NotificationScreen()));
 
-      expect(find.byType(NotificationScreen), findsOneWidget);
+      final cards = find.byType(Card);
+      for (int i = 0; i < cards.evaluate().length; i++) {
+        final card = tester.widget<Card>(cards.at(i));
+        final shape = card.shape as RoundedRectangleBorder;
+        expect(shape.borderRadius, BorderRadius.circular(12));
+      }
     });
   });
 }

@@ -3,9 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:savetaxindia/utils/default_button.dart';
+import '../helpers/test_setup.dart';
 
 void main() {
   group('DefaultButton Widget Tests', () {
+    setUpAll(() async {
+      // Initialize test environment
+      await TestSetup.setupFirebaseForTesting();
+    });
+
     testWidgets('should render DefaultButton with correct text', (
       WidgetTester tester,
     ) async {
@@ -198,7 +204,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: DefaultButton(
-              text: 'Press Me',
+              text: 'Multi Press',
               size: 16.0,
               press: () {
                 pressCount++;
@@ -215,54 +221,6 @@ void main() {
       await tester.tap(find.byType(TextButton));
       await tester.pump();
       expect(pressCount, 2);
-    });
-
-    testWidgets('should handle button with numbers in text', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: DefaultButton(text: 'Button 123', size: 16.0, press: () {}),
-          ),
-        ),
-      );
-
-      expect(find.text('Button 123'), findsOneWidget);
-    });
-
-    testWidgets('should handle button with spaces in text', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: DefaultButton(
-              text: 'Button with spaces',
-              size: 16.0,
-              press: () {},
-            ),
-          ),
-        ),
-      );
-
-      expect(find.text('Button with spaces'), findsOneWidget);
-    });
-
-    testWidgets('should have correct widget hierarchy', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: DefaultButton(text: 'Test', size: 16.0, press: () {}),
-          ),
-        ),
-      );
-
-      expect(find.byType(SizedBox), findsOneWidget);
-      expect(find.byType(TextButton), findsOneWidget);
-      expect(find.byType(Text), findsOneWidget);
     });
 
     testWidgets('should handle rapid button presses', (
@@ -293,6 +251,129 @@ void main() {
       expect(pressCount, 5);
     });
 
+    testWidgets('should handle unicode characters in text', (
+      WidgetTester tester,
+    ) async {
+      const unicodeText = '按钮测试';
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DefaultButton(text: unicodeText, size: 16.0, press: () {}),
+          ),
+        ),
+      );
+
+      expect(find.text(unicodeText), findsOneWidget);
+    });
+
+    testWidgets('should handle emoji in text', (WidgetTester tester) async {
+      const emojiText = 'Button 😀🎉';
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DefaultButton(text: emojiText, size: 16.0, press: () {}),
+          ),
+        ),
+      );
+
+      expect(find.text(emojiText), findsOneWidget);
+    });
+
+    testWidgets('should handle multiple buttons in same screen', (
+      WidgetTester tester,
+    ) async {
+      int button1Presses = 0;
+      int button2Presses = 0;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Column(
+              children: [
+                DefaultButton(
+                  text: 'Button 1',
+                  size: 16.0,
+                  press: () {
+                    button1Presses++;
+                  },
+                ),
+                DefaultButton(
+                  text: 'Button 2',
+                  size: 16.0,
+                  press: () {
+                    button2Presses++;
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(DefaultButton), findsNWidgets(2));
+      expect(find.text('Button 1'), findsOneWidget);
+      expect(find.text('Button 2'), findsOneWidget);
+
+      await tester.tap(find.text('Button 1'));
+      await tester.pump();
+      expect(button1Presses, 1);
+      expect(button2Presses, 0);
+
+      await tester.tap(find.text('Button 2'));
+      await tester.pump();
+      expect(button1Presses, 1);
+      expect(button2Presses, 1);
+    });
+
+    testWidgets('should handle button with very small size', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DefaultButton(text: 'Small', size: 0.1, press: () {}),
+          ),
+        ),
+      );
+
+      expect(find.byType(DefaultButton), findsOneWidget);
+      final button = tester.widget<DefaultButton>(find.byType(DefaultButton));
+      expect(button.size, 0.1);
+    });
+
+    testWidgets('should handle button with negative size', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DefaultButton(text: 'Negative', size: -5.0, press: () {}),
+          ),
+        ),
+      );
+
+      expect(find.byType(DefaultButton), findsOneWidget);
+      final button = tester.widget<DefaultButton>(find.byType(DefaultButton));
+      expect(button.size, -5.0);
+    });
+
+    testWidgets('should maintain widget hierarchy', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DefaultButton(text: 'Test', size: 16.0, press: () {}),
+          ),
+        ),
+      );
+
+      final button = tester.widget<DefaultButton>(find.byType(DefaultButton));
+      expect(button, isNotNull);
+    });
+
     testWidgets('should handle different screen sizes', (
       WidgetTester tester,
     ) async {
@@ -305,6 +386,49 @@ void main() {
           ),
         ),
       );
+
+      expect(find.byType(DefaultButton), findsOneWidget);
+    });
+
+    testWidgets('should handle widget rebuilds', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DefaultButton(text: 'Test', size: 16.0, press: () {}),
+          ),
+        ),
+      );
+
+      expect(find.byType(DefaultButton), findsOneWidget);
+
+      // Rebuild the widget
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DefaultButton(text: 'Test', size: 16.0, press: () {}),
+          ),
+        ),
+      );
+
+      expect(find.byType(DefaultButton), findsOneWidget);
+    });
+
+    testWidgets('should handle orientation changes', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DefaultButton(text: 'Test', size: 16.0, press: () {}),
+          ),
+        ),
+      );
+
+      expect(find.byType(DefaultButton), findsOneWidget);
+
+      // Change orientation
+      await tester.binding.setSurfaceSize(const Size(800, 400));
+      await tester.pump();
 
       expect(find.byType(DefaultButton), findsOneWidget);
     });

@@ -9,6 +9,7 @@ import '../../../utils/constants/constants.dart';
 import '../../edit_profile_screen/edit_profile_screen.dart';
 import 'followers_screen.dart';
 
+// Info widget displays the user's profile information, including username, bio, edit/unfollow button, and stats.
 class Info extends StatelessWidget {
   const Info({
     super.key,
@@ -17,12 +18,16 @@ class Info extends StatelessWidget {
     required this.uid,
   });
 
+  // Username to display
   final String username;
+  // Bio to display
   final String bio;
+  // User's unique id
   final String uid;
 
   @override
   Widget build(BuildContext context) {
+    // Get current user info from provider
     final currentuid = Provider.of<UserProvider>(context).user.uid;
     final currentusername = Provider.of<UserProvider>(context).user.userName;
     final currentbio = Provider.of<UserProvider>(context).user.bio;
@@ -33,6 +38,7 @@ class Info extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //==================Edit Profile Button==================
+          // Show edit button if viewing own profile
           uid == currentuid
               ? Align(
                   alignment: Alignment.centerRight,
@@ -43,6 +49,7 @@ class Info extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
+                      // Navigate to edit profile screen
                       Get.toNamed(EditProfileScreen.routeName);
                     },
                     child: const Text("Edit"),
@@ -50,6 +57,7 @@ class Info extends StatelessWidget {
                 )
               : const SizedBox.shrink(),
           //==================User Name==================
+          // Show username, or prompt to set if empty and own profile
           Text(
             uid == currentuid
                 ? (currentusername == ''
@@ -61,6 +69,7 @@ class Info extends StatelessWidget {
 
           //==================User Bio==================
           sh01,
+          // Show bio, or prompt to set if empty and own profile
           Text(
             uid == currentuid
                 ? (currentbio == '' ? "Please set your bio" : currentbio)
@@ -72,11 +81,14 @@ class Info extends StatelessWidget {
             ),
           ),
 
+          // User type and stats row
           UserType(),
 
+          // Followers and following row
           FollowersFollowingRow(),
 
           //==================Unfollow Button==================
+          // Show unfollow button if viewing another user's profile
           uid == currentuid
               ? const SizedBox.shrink()
               : SizedBox(
@@ -109,6 +121,7 @@ class Info extends StatelessWidget {
   }
 }
 
+// FollowersFollowingRow displays the number of followers and following, with navigation to the respective screens.
 class FollowersFollowingRow extends StatelessWidget {
   const FollowersFollowingRow({super.key});
 
@@ -123,6 +136,7 @@ class FollowersFollowingRow extends StatelessWidget {
           ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
           child: TextButton(
             onPressed: () {
+              // Navigate to followers screen
               Get.toNamed(FollowersScreen.routeName);
             },
             child: Text(
@@ -142,6 +156,7 @@ class FollowersFollowingRow extends StatelessWidget {
           ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
           child: TextButton(
             onPressed: () {
+              // Navigate to following screen (currently same as followers)
               Get.toNamed(FollowersScreen.routeName);
             },
             child: Text(
@@ -158,6 +173,7 @@ class FollowersFollowingRow extends StatelessWidget {
   }
 }
 
+// UserType displays the user's type (e.g., salaried), and some stats with icons.
 class UserType extends StatelessWidget {
   const UserType({super.key});
 
@@ -203,6 +219,7 @@ class UserType extends StatelessWidget {
           ],
         ),
 
+        // People icon and stat
         TextButton.icon(
           onPressed: () {},
           icon: SvgPicture.asset(
